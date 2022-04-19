@@ -1,0 +1,9 @@
+@import 'libs/normalize';
+@import 'variables';
+@import 'components/_header.scss';
+@import 'components/_category.scss';
+@import 'components/_card.scss';
+
+body {
+  background-color: $background;
+}

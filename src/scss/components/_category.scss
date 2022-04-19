@@ -1,0 +1,29 @@
+@import '../variables';
+
+.main {
+
+  .container {
+    width: $container-width;
+    .name {
+      position: relative;
+      width: 299px;
+      height: 68px;
+      font-weight: 400;
+      font-size: 42px;
+      left: 101px;
+      top: 80px;
+    }
+    .cards-block {
+      position: relative;
+      top: 103px;
+      left: 100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+
+    }
+  }
+
+}
