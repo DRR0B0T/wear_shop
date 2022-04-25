@@ -1,8 +1,8 @@
 import React from 'react';
 
-const CurrencyMenu = () => {
+const CartOverlay = () => {
   return (
-    <div className="currency-menu">
+    <div>
       <ul>
         <li>$ USD</li>
         <li>€ EUR</li>
@@ -12,4 +12,4 @@ const CurrencyMenu = () => {
   );
 };
 
-export default CurrencyMenu;
+export default CartOverlay;

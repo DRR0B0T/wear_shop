@@ -15,14 +15,13 @@
     }
     .cards-block {
       position: relative;
+      width: 100%;
       top: 103px;
       left: 100px;
-      margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-
+      justify-content: flex-start;
+      gap: 20px;
     }
   }
 
