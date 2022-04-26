@@ -1,10 +1,16 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import logo from "../assets/img/logo.png";
-import CartOverlay from "./CartOverlay";
+import CurrencyMenu from "./CurrencyMenu";
+import Drawer from "./Drawer";
 
 const Header = () => {
+  const [cartOpened, setCartOpened] = React.useState(false);
+  const [currencyOpened, setCurrencyOpened] = React.useState(false);
+
   return (
+
+    <>
     <header className='header'>
       <div className="container">
         <div className="categories">
@@ -27,19 +33,25 @@ const Header = () => {
             xmlns="http://www.w3.org/2000/svg">
             <path d="M15.13 20.798L16.138 20.816V23.426H15.13V20.798ZM15.22 20.6V9.638L16.03 9.512V20.636L15.22 20.6ZM15.13 6.83H16.138V9.404L15.13 9.53V6.83ZM19.144 11.402C19 11.234 18.808 11.072 18.568 10.916C18.328 10.76 18.058 10.622 17.758 10.502C17.458 10.37 17.128 10.268 16.768 10.196C16.42 10.112 16.054 10.07 15.67 10.07C14.686 10.07 13.96 10.256 13.492 10.628C13.024 11 12.79 11.51 12.79 12.158C12.79 12.614 12.91 12.974 13.15 13.238C13.39 13.502 13.756 13.718 14.248 13.886C14.752 14.054 15.388 14.228 16.156 14.408C17.044 14.6 17.812 14.834 18.46 15.11C19.108 15.386 19.606 15.758 19.954 16.226C20.302 16.682 20.476 17.294 20.476 18.062C20.476 18.674 20.356 19.208 20.116 19.664C19.888 20.108 19.564 20.48 19.144 20.78C18.724 21.068 18.232 21.284 17.668 21.428C17.104 21.56 16.492 21.626 15.832 21.626C15.184 21.626 14.548 21.56 13.924 21.428C13.312 21.284 12.73 21.08 12.178 20.816C11.626 20.552 11.11 20.222 10.63 19.826L11.404 18.458C11.596 18.662 11.842 18.866 12.142 19.07C12.454 19.262 12.802 19.442 13.186 19.61C13.582 19.778 14.008 19.916 14.464 20.024C14.92 20.12 15.388 20.168 15.868 20.168C16.78 20.168 17.488 20.006 17.992 19.682C18.496 19.346 18.748 18.86 18.748 18.224C18.748 17.744 18.604 17.36 18.316 17.072C18.04 16.784 17.626 16.544 17.074 16.352C16.522 16.16 15.85 15.968 15.058 15.776C14.194 15.56 13.468 15.326 12.88 15.074C12.292 14.81 11.848 14.468 11.548 14.048C11.26 13.628 11.116 13.082 11.116 12.41C11.116 11.594 11.314 10.904 11.71 10.34C12.106 9.776 12.652 9.35 13.348 9.062C14.044 8.774 14.83 8.63 15.706 8.63C16.282 8.63 16.816 8.69 17.308 8.81C17.812 8.93 18.28 9.098 18.712 9.314C19.144 9.53 19.54 9.788 19.9 10.088L19.144 11.402Z" fill="#1D1F22"/>
           </svg>
-            <CartOverlay/>
-          <svg
-            className='arrow'
-            width="8"
-            height="4"
-            viewBox="0 0 8 4"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 0.5L4 3.5L7 0.5" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-
-          <svg
+         <div
+           onClick={() => setCurrencyOpened(!currencyOpened)}
+           className={currencyOpened ? 'arrow' : 'arrow rotate'}>
+           <svg
+             width="12"
+             height="6"
+             viewBox="0 0 8 4"
+             fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+             <path d="M1 0.5L4 3.5L7 0.5" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
+           </svg>
+            <CurrencyMenu
+              currencyOpened={currencyOpened}
+            />
+         </div>
+          <div
             className='cart'
+            onClick={() => setCartOpened(!cartOpened)}>
+          <svg
             width="20"
             height="20"
             viewBox="0 0 20 20"
@@ -55,10 +67,17 @@ const Header = () => {
               d="M15.6875 14.9814C14.4875 14.9814 13.498 15.9277 13.498 17.0752C13.498 18.2226 14.4876 19.1689 15.6875 19.1689C16.8875 19.1689 17.877 18.2226 17.877 17.0752C17.8565 15.9284 16.8875 14.9814 15.6875 14.9814ZM15.6875 17.9011C15.2031 17.9011 14.8239 17.5385 14.8239 17.0752C14.8239 16.612 15.2031 16.2493 15.6875 16.2493C16.172 16.2493 16.5512 16.612 16.5512 17.0752C16.5512 17.5188 16.1506 17.9011 15.6875 17.9011Z"
               fill="#43464E"/>
           </svg>
+            <div className='purchase'>
+              <span>2</span>
+            </div>
+          </div>
         </div>
-
       </div>
     </header>
+      <Drawer
+        cartOpened={cartOpened}
+      />
+    </>
   );
 };
 

@@ -8,19 +8,25 @@ import PDP from "./pages/PDP";
 import Category from "./pages/Category";
 import Cart from "./pages/Cart";
 
+export const AppContext = React.createContext({})
 
 function App() {
+
+
   return (
-    <div className="App">
-      <Routes>
-      <Route path='/' element={<Layout/>}>
-        <Route index element={<Category/>}/>
-        <Route path='pdp' element={<PDP/>}/>
-        <Route path='cart' element={<Cart/>}/>
-        <Route  path='*'   element={<Error/>} />
-      </Route>
-      </Routes>
-    </div>
+    <AppContext.Provider value={{}} className="Provider">
+      <div className="App">
+        <Routes>
+          <Route path='/' element={<Layout/>}>
+            <Route index element={<Category/>}/>
+            <Route path='pdp' element={<PDP/>}/>
+            <Route path='cart' element={<Cart/>}/>
+            <Route  path='*'   element={<Error/>} />
+          </Route>
+        </Routes>
+      </div>
+    </AppContext.Provider>
+    
   );
 }
 

@@ -1,0 +1,141 @@
+@import '../variables';
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  transition: opacity 0.1s ease-out, visibility 0.1s ease-out;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.drawer {
+  position: absolute;
+  width: 325px;
+  z-index: 1;
+  top: 0;
+  right: 87px;
+  background: $background;
+  padding: 16px;
+
+  .disabled-btn {
+    color: #A6A6A6;
+    border: 1px solid #A6A6A6;
+  }
+ &-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   width: 293px;
+ }
+  &__title b{
+    font-weight: 700;
+  }
+  &__title span{
+    font-weight: 400;
+  }
+  &__items {
+    width: 293px;
+    overflow: auto;
+    height: 360px;
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      height: 137px;
+      padding: 0;
+      margin-top: 41px;
+      &-price {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        span {
+          font-weight: 600;
+        }
+        h3{
+          font-weight: 300;
+        }
+        button {
+          width: 24px;
+          height: 24px;
+          border-radius: 0;
+          border: 1px solid $text;
+          margin-right: 8px;
+          text-align: center;
+          font-weight: 500;
+          cursor: pointer;
+        }
+      }
+      &-counter {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        button{
+          width: 24px;
+          height: 24px;
+          border-radius: 0;
+          border: 1px solid $text;
+          margin-right: 8px;
+          font-size: 24px;
+          line-height: 1rem;
+          cursor: pointer;
+        }
+        input{
+          width: 24px;
+          height: 26px;
+          border: none;
+          text-align: center;
+          font-size: 16px;
+        }
+      }
+      &-img {
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+  &__total {
+    font-weight: 700;
+    width: inherit;
+    margin-top: 42px;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__footer{
+    display: flex;
+    justify-content: space-between;
+    &-button {
+      width: 140px;
+      height: 43px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border: 1px solid $text;
+      margin-top: 35px;
+      cursor: pointer;
+      transition: all 0.5s ease-in-out;
+      &:hover {
+        background-color: $primary;
+        color: #fff;
+        border: none;
+      }
+      &.active {
+        background-color: $primary;
+        color: #fff;
+        border: none;
+      }
+    }
+  }
+}
