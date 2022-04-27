@@ -46,11 +46,13 @@ const Header = () => {
            </svg>
             <CurrencyMenu
               currencyOpened={currencyOpened}
+              setCurrencyOpened={setCurrencyOpened}
             />
          </div>
           <div
-            className='cart'
-            onClick={() => setCartOpened(!cartOpened)}>
+            className='header-cart'
+            onClick={() => setCartOpened(!cartOpened)}
+          >
           <svg
             width="20"
             height="20"
@@ -75,6 +77,7 @@ const Header = () => {
       </div>
     </header>
       <Drawer
+        setCartOpened={setCartOpened}
         cartOpened={cartOpened}
       />
     </>

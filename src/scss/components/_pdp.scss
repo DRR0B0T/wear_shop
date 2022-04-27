@@ -19,6 +19,7 @@
       &_img {
         width: 80px;
         height: 80px;
+        cursor: pointer;
       }
     }
   }
@@ -117,6 +118,12 @@
         font-weight: 600;
         font-size: 16px;
         cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background: $background;
+          border: 1px solid $text;
+          color: $text;
+        }
       }
       }
       &__footer {

@@ -1,13 +1,16 @@
 import React from 'react';
 import img from '../assets/img/image4.png'
 import glasses from '../assets/img/glasses.png'
+import {Link} from "react-router-dom";
 
-const Drawer = ({cartOpened}) => {
+const Drawer = ({cartOpened, setCartOpened}) => {
 
   return (
     <div
+      onClick={() => setCartOpened(false)}
       className={cartOpened ? 'overlay visible' : 'overlay'}>
       <div
+        onClick={e => e.stopPropagation()}
         className="drawer">
         <div className="drawer-container">
           <div className="drawer__title">
@@ -27,9 +30,22 @@ const Drawer = ({cartOpened}) => {
                 </div>
               </div>
               <div className="drawer__items__item-counter">
-                <button>+</button>
+                <button>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       strokeWidth="2"
+                       strokeLinecap="round" strokeLinejoin="round" className="feather feather-plus">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </button>
                 <input defaultValue={1} type="text"/>
-                <button>-</button>
+                <button>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             strokeWidth="2"
+                             strokeLinecap="round" strokeLinejoin="round" className="feather feather-minus">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                </button>
               </div>
               <div className="drawer__items__item-img">
                 <img  src={img} alt="product"/>
@@ -46,9 +62,22 @@ const Drawer = ({cartOpened}) => {
                 </div>
               </div>
               <div className="drawer__items__item-counter">
-                <button>+</button>
+                <button>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       strokeWidth="2"
+                       strokeLinecap="round" strokeLinejoin="round" className="feather feather-plus">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </button>
                 <input defaultValue={2} type="text"/>
-                <button>-</button>
+                <button>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       strokeWidth="2"
+                       strokeLinecap="round" strokeLinejoin="round" className="feather feather-minus">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </button>
               </div>
               <div className="drawer__items__item-img">
                 <img  src={glasses} alt="glasses"/>
@@ -59,9 +88,13 @@ const Drawer = ({cartOpened}) => {
             <span>Total</span> <span>$100</span>
           </div>
           <div className="drawer__footer">
-            <button className='drawer__footer-button'>
-              View bag
-            </button>
+            <Link
+              onClick={()=>setCartOpened(false)}
+              to='/cart'>
+              <button className='drawer__footer-button'>
+                View bag
+              </button>
+            </Link>
             <button className='drawer__footer-button active'>
               Checkout
             </button>

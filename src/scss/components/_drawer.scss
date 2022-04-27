@@ -12,12 +12,13 @@
   overflow: hidden;
   visibility: hidden;
   opacity: 0;
-
+  pointer-events: none;
 }
 
 .visible {
   visibility: visible;
   opacity: 1;
+  pointer-events: all;
 }
 
 .drawer {
@@ -30,9 +31,11 @@
   padding: 16px;
 
   .disabled-btn {
-    color: #A6A6A6;
-    border: 1px solid #A6A6A6;
+    color: $disabled;
+    border: 1px solid $disabled;
+    background: rgba(166, 166, 166, 0.2);
     pointer-events: none;
+
   }
  &-container {
    display: flex;
@@ -79,6 +82,12 @@
           font-weight: 500;
           cursor: pointer;
           font-family: 'Source Sans Pro', sans-serif;
+          background: $background;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            background: $text;
+            color: $background;
+          }
         }
       }
       &-counter {
@@ -92,9 +101,19 @@
           height: 24px;
           border-radius: 0;
           border: 1px solid $text;
-          font-size: 24px;
-          line-height: 1rem;
           cursor: pointer;
+          background: $background;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            background: $text;
+            color: $background;
+          }
+          svg {
+            position:relative;
+            top: 2px;
+            width: 15px;
+            height: 15px;
+          }
         }
         input{
           width: 24px;
@@ -116,7 +135,7 @@
   &__total {
     font-weight: 700;
     width: inherit;
-    margin-top: 42px;
+    margin-top: 21px;
     display: flex;
     justify-content: space-between;
     span {
@@ -129,15 +148,16 @@
   &__footer{
     display: flex;
     justify-content: space-between;
+    margin-top: 21px;
+
     &-button {
       width: 140px;
       height: 43px;
       text-transform: uppercase;
       font-weight: 600;
       border: 1px solid $text;
-      margin-top: 35px;
       cursor: pointer;
-      transition: all 0.5s ease-in-out;
+      transition: background-color 1s ease-in-out;
       &:hover {
         background-color: $primary;
         color: #fff;
