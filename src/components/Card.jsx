@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import item from '../assets/img/image1.png'
 import ShoppingIcon from "./ShoppingIcon";
+import {Link} from "react-router-dom";
 
 const Card = () => {
   const [outOfStock, setOutOfStock] = useState(false);
@@ -9,6 +10,7 @@ const Card = () => {
 
   return (
     <>
+      <Link to={'/pdp'}>
       {
         outOfStock
           ? <div className="card disabled">
@@ -28,6 +30,7 @@ const Card = () => {
         <span className="card__price"> $50 </span>
       </div>
       }
+      </Link>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import img from '../assets/img/image4.png'
+import glasses from '../assets/img/glasses.png'
 
 const Drawer = ({cartOpened}) => {
 
@@ -17,7 +18,8 @@ const Drawer = ({cartOpened}) => {
           <div className="drawer__items">
             <div className="drawer__items__item">
               <div className="drawer__items__item-price">
-                <h3>Apollo Running Sport</h3>
+                <h3>Apollo</h3>
+                <h3>Running Sport</h3>
                 <span>$50.00</span>
                 <div>
                   <button>S</button>
@@ -35,7 +37,8 @@ const Drawer = ({cartOpened}) => {
             </div>
             <div className="drawer__items__item">
               <div className="drawer__items__item-price">
-                <h3>Apollo Running Sport</h3>
+                <h3>Jupiter </h3>
+                <h3> Wayfarer</h3>
                 <span>$75.00</span>
                 <div>
                   <button>S</button>
@@ -44,11 +47,11 @@ const Drawer = ({cartOpened}) => {
               </div>
               <div className="drawer__items__item-counter">
                 <button>+</button>
-                <input defaultValue={1} type="text"/>
+                <input defaultValue={2} type="text"/>
                 <button>-</button>
               </div>
               <div className="drawer__items__item-img">
-                <img  src={img} alt="product"/>
+                <img  src={glasses} alt="glasses"/>
               </div>
             </div>
           </div>

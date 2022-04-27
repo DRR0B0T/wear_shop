@@ -1,6 +1,7 @@
 @import '../variables';
 
 .main {
+  max-width: 100%;
 
   .container {
     width: $container-width;
@@ -22,6 +23,7 @@
       flex-wrap: wrap;
       justify-content: flex-start;
       gap: 20px;
+
     }
   }
 
