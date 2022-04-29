@@ -1,18 +1,30 @@
 import React from 'react';
 
-const CurrencyMenu = ({currencyOpened, setCurrencyOpened}) => {
+
+const CurrencyMenu = ({currency, value, onChange, setClick, click}) => {
+
   return (
-    <div
-      className={currencyOpened ? 'modal active' : 'modal'}
-      onClick={() => setCurrencyOpened(false)}>
-      <ul
-        className={currencyOpened ? 'currency-menu active' : 'currency-menu'}
-        onClick={e => e.stopPropagation()}>
-        <li>$ USD</li>
-        <li>€ EUR</li>
-        <li>¥ JPY</li>
-      </ul>
-    </div>
+          <select
+            className='classic'
+            value={value}
+            onChange={event => onChange(event.target.value)}
+            onClick={()=> setClick(!click)}
+          >
+
+            <option value={value}>{value}</option>
+            {
+              currency.map(options => (
+
+            <option
+              value={options.symbol}
+              key={options.symbol}
+            >
+              {options.symbol}  {options.label}
+            </option>
+              ))
+            }
+
+          </select>
   );
 };
 

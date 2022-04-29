@@ -60,12 +60,7 @@
         width: 30px;
         height: 24px;
         text-align: center;
-        svg {
 
-        }
-        &.rotate {
-          transform: rotate(180deg) translateY(0);
-        }
       }
       .header-cart {
         position: relative;
@@ -73,7 +68,6 @@
         height: 100%;
         display: flex;
         align-items: center;
-        margin-left: 20px;
         .purchase {
           position: absolute;
           top: 0;
