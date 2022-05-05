@@ -4,16 +4,14 @@ import logo from "../assets/img/logo.png";
 import CurrencyMenu from "./CurrencyMenu";
 import Drawer from "./Drawer";
 import {useQuery} from "@apollo/client";
-import {GET_ALL_CURRENCY} from "../query/currency";
+import {GET_ALL_CURRENCY} from "../query/allData";
 
 const Header = () => {
   const {data,loading,error} = useQuery(GET_ALL_CURRENCY)
 
   const [cartOpened, setCartOpened] = React.useState(false);
   const [currency, setCurrency] = React.useState([]);
-  const [selectedSort, setSelectedSort] = React.useState('')
   const [click, setClick] = React.useState(false)
-
 
 
   React.useEffect(()=>{
@@ -21,10 +19,8 @@ const Header = () => {
       setCurrency(data.currencies)
     }
     if (error) return <p>Error :(</p>
-  },[data, error])
-  const sortPosts = (sort) => {
-    setSelectedSort(sort)
-  }
+  },[data,loading, error])
+
   return (
     <>
     <header className='header'>
@@ -45,8 +41,6 @@ const Header = () => {
             <CurrencyMenu
               click={click}
               setClick={setClick}
-              value={selectedSort}
-              onChange={sortPosts}
               currency={currency}
             />
            <svg
@@ -76,9 +70,11 @@ const Header = () => {
               d="M15.6875 14.9814C14.4875 14.9814 13.498 15.9277 13.498 17.0752C13.498 18.2226 14.4876 19.1689 15.6875 19.1689C16.8875 19.1689 17.877 18.2226 17.877 17.0752C17.8565 15.9284 16.8875 14.9814 15.6875 14.9814ZM15.6875 17.9011C15.2031 17.9011 14.8239 17.5385 14.8239 17.0752C14.8239 16.612 15.2031 16.2493 15.6875 16.2493C16.172 16.2493 16.5512 16.612 16.5512 17.0752C16.5512 17.5188 16.1506 17.9011 15.6875 17.9011Z"
               fill="#43464E"/>
           </svg>
+
             <div className='purchase'>
-              <span>2</span>
+              <span>9</span>
             </div>
+
           </div>
         </div>
       </div>

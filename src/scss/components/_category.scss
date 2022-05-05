@@ -5,14 +5,19 @@
 
   .container {
     width: $container-width;
+    select:hover {
+      background-color: rgba(0,0,0,0.05);
+      border-radius: 5px;
+    }
     .name {
-      position: relative;
-      width: 299px;
-      height: 68px;
+      position:relative;
+      left: 100px;
+      top: 80px;
       font-weight: 400;
       font-size: 42px;
-      left: 101px;
-      top: 80px;
+      width: 160px;
+      height: 68px;
+      padding: 0 0 0 5px;
     }
     .cards-block {
       position: relative;

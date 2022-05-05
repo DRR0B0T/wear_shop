@@ -3,7 +3,6 @@ import wear from '../assets/img/image4.png'
 
 const PDP = () => {
   return (
-    <div>
       <div className="pdp">
         <div className="pdp-left">
           <div className='pdp-left__images'>
@@ -29,6 +28,12 @@ const PDP = () => {
                 <button>M</button>
                 <button>L</button>
               </div>
+              <h3 style={{marginTop: 10}}>Color:</h3>
+              <div className='pdp-right-content__sizes-colors'>
+                <button className='pdp-right-content__sizes-colors-btn grey'></button>
+                <button className='pdp-right-content__sizes-colors-btn brown'></button>
+                <button className='pdp-right-content__sizes-colors-btn green active'></button>
+              </div>
             </div>
             <div className="pdp-right-content__price">
               <h3>Price</h3>
@@ -45,7 +50,6 @@ const PDP = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

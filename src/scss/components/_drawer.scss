@@ -28,7 +28,7 @@
   top: 0;
   right: 87px;
   background: $background;
-  padding: 16px;
+  padding: 12px;
 
   .disabled-btn {
     color: $disabled;
@@ -38,10 +38,7 @@
 
   }
  &-container {
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   width: 293px;
+   width: 100%;
  }
   &__title b{
     font-weight: 700;
@@ -50,13 +47,13 @@
     font-weight: 400;
   }
   &__items {
-    width: 293px;
+    width: 100%;
     overflow: auto;
     height: 360px;
     &__item {
       display: flex;
       justify-content: space-between;
-      height: 137px;
+      height: 190px;
       padding: 0;
       margin-top: 41px;
       &-price {
@@ -68,25 +65,59 @@
         h3{
           font-weight: 300;
           width: inherit;
+          word-wrap: break-word;
         }
         span {
           font-weight: 600;
         }
-        button {
-          width: 24px;
-          height: 24px;
-          border-radius: 0;
-          border: 1px solid $text;
-          margin-right: 8px;
-          text-align: center;
-          font-weight: 500;
+
+      }
+      &-size {
+        &-btn {
+
+            width: 24px;
+            height: 24px;
+            border-radius: 0;
+            border: 1px solid $text;
+            margin-right: 8px;
+            text-align: center;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: 'Source Sans Pro', sans-serif;
+            background: $background;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              background: $text;
+              color: $background;
+            }
+
+        }
+      }
+      &-color {
+        width: 100%;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        &-btn {
+          width: 20px;
+          height: 20px;
+          border: 2px solid $background;
           cursor: pointer;
-          font-family: 'Source Sans Pro', sans-serif;
-          background: $background;
-          transition: all 0.3s ease-in-out;
-          &:hover {
-            background: $text;
-            color: $background;
+          margin-right: 4px;
+          box-sizing: border-box;
+          &.grey {
+            background: #D3D2D5;
+          }
+          &.brown {
+            background: #2B2B2B;
+          }
+          &.green {
+            background: #0F6450;
+          }
+          &.active {
+            border: 2px solid #5ECE7B;
+            width: 20px;
+            height: 20px;
           }
         }
       }
@@ -96,6 +127,7 @@
         justify-content: space-between;
         align-items: center;
         width: 24px;
+        margin-right: 8px;
         button{
           width: 24px;
           height: 24px;
@@ -125,8 +157,8 @@
       }
       &-img {
         img {
-          width: 105px;
-          height: 137px;
+          width: 100%;
+          height: 100%;
           object-fit: cover;
         }
       }

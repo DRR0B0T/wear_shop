@@ -4,7 +4,7 @@ import glasses from '../assets/img/glasses.png'
 import {Link} from "react-router-dom";
 
 const Drawer = ({cartOpened, setCartOpened}) => {
-
+  const [btn, setBtn] = React.useState(false)
   return (
     <div
       onClick={() => setCartOpened(false)}
@@ -15,18 +15,34 @@ const Drawer = ({cartOpened, setCartOpened}) => {
         <div className="drawer-container">
           <div className="drawer__title">
             <h3 >
-              <b>My bag,</b> <span>2 items</span>
+              <b>My bag,</b> <span>3 items</span>
             </h3>
           </div>
           <div className="drawer__items">
             <div className="drawer__items__item">
               <div className="drawer__items__item-price">
-                <h3>Apollo</h3>
-                <h3>Running Sport</h3>
+                <h3>Apollo &nbsp; Running Sport</h3>
                 <span>$50.00</span>
-                <div>
-                  <button>S</button>
-                  <button className='disabled-btn'>M</button>
+                <div className='drawer__items__item-size'>
+                  <h3>Size:</h3>
+                 <div>
+                   <button
+
+                     className='drawer__items__item-size-btn'>XS</button>
+                   <button className='drawer__items__item-size-btn disabled-btn'>S</button>
+                   <button className='drawer__items__item-size-btn'>M</button>
+                   <button className='drawer__items__item-size-btn'>L</button>
+                 </div>
+                </div>
+                <div >
+                  <h3>Color:</h3>
+                  <div className='drawer__items__item-color'>
+                    <button
+                      onClick={()=> setBtn(!btn)}
+                      className={btn ? 'drawer__items__item-color-btn grey active' : 'drawer__items__item-color-btn grey'}></button>
+                    <button className='drawer__items__item-color-btn brown'></button>
+                    <button className='drawer__items__item-color-btn green'></button>
+                  </div>
                 </div>
               </div>
               <div className="drawer__items__item-counter">
@@ -53,12 +69,28 @@ const Drawer = ({cartOpened, setCartOpened}) => {
             </div>
             <div className="drawer__items__item">
               <div className="drawer__items__item-price">
-                <h3>Jupiter </h3>
-                <h3> Wayfarer</h3>
+                <h3>Jupiter Wayfarer</h3>
                 <span>$75.00</span>
-                <div>
-                  <button>S</button>
-                  <button className='disabled-btn'>M</button>
+                <div className='drawer__items__item-size'>
+                  <h3>Size:</h3>
+                 <div>
+                   <button
+
+                     className='drawer__items__item-size-btn'>XS</button>
+                   <button className='drawer__items__item-size-btn disabled-btn'>S</button>
+                   <button className='drawer__items__item-size-btn'>M</button>
+                   <button className='drawer__items__item-size-btn'>L</button>
+                 </div>
+                </div>
+                <div >
+                  <h3>Color:</h3>
+                  <div className='drawer__items__item-color'>
+                    <button
+                      onClick={()=> setBtn(!btn)}
+                      className={btn ? 'drawer__items__item-color-btn grey active' : 'drawer__items__item-color-btn grey'}></button>
+                    <button className='drawer__items__item-color-btn brown'></button>
+                    <button className='drawer__items__item-color-btn green'></button>
+                  </div>
                 </div>
               </div>
               <div className="drawer__items__item-counter">
@@ -70,22 +102,23 @@ const Drawer = ({cartOpened, setCartOpened}) => {
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                   </svg>
                 </button>
-                <input defaultValue={2} type="text"/>
+                <input defaultValue={1} type="text"/>
                 <button>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                       strokeWidth="2"
-                       strokeLinecap="round" strokeLinejoin="round" className="feather feather-minus">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                  </svg>
+                             strokeWidth="2"
+                             strokeLinecap="round" strokeLinejoin="round" className="feather feather-minus">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
                 </button>
               </div>
               <div className="drawer__items__item-img">
-                <img  src={glasses} alt="glasses"/>
+                <img  src={glasses} alt="product"/>
               </div>
             </div>
+
           </div>
           <div className="drawer__total">
-            <span>Total</span> <span>$100</span>
+            <span>Total</span> <span>$200</span>
           </div>
           <div className="drawer__footer">
             <Link

@@ -1,29 +1,28 @@
 import React from 'react';
 
 
-const CurrencyMenu = ({currency, value, onChange, setClick, click}) => {
+const CurrencyMenu = ({currency,  setClick, click}) => {
+  const [selectedSort, setSelectedSort] = React.useState('')
+  const sortValue = (event) => {
+     setSelectedSort(event.target.value.slice(0, 2))
+  }
 
   return (
           <select
-            className='classic'
-            value={value}
-            onChange={event => onChange(event.target.value)}
+            value={selectedSort}
+            onChange={sortValue}
             onClick={()=> setClick(!click)}
           >
-
-            <option value={value}>{value}</option>
+            <option>{selectedSort}</option>
             {
-              currency.map(options => (
-
+              currency.map((options,index) => (
             <option
-              value={options.symbol}
-              key={options.symbol}
+              key={index}
             >
-              {options.symbol}  {options.label}
+              {options.symbol} {options.label}
             </option>
               ))
             }
-
           </select>
   );
 };

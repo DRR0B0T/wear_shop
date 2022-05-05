@@ -8,13 +8,9 @@ import PDP from "./pages/PDP";
 import Category from "./pages/Category";
 import Cart from "./pages/Cart";
 
-export const AppContext = React.createContext({})
 
 function App() {
-
-
   return (
-    <AppContext.Provider value={{}} className="Provider">
       <div className="App">
         <Routes>
           <Route path='/' element={<Layout/>}>
@@ -25,8 +21,6 @@ function App() {
           </Route>
         </Routes>
       </div>
-    </AppContext.Provider>
-    
   );
 }
 
