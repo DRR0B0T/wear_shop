@@ -1,7 +1,10 @@
 import React from 'react';
 import wear from '../assets/img/image4.png'
+import {useParams} from "react-router-dom";
 
 const PDP = () => {
+  let {id} = useParams()
+
   return (
       <div className="pdp">
         <div className="pdp-left">

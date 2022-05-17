@@ -1,23 +1,30 @@
 import React from 'react';
+import {useQuery} from "@apollo/client";
+import {GET_ALL_CURRENCY} from "../query/allData";
 
 
-const CurrencyMenu = ({currency,  setClick, click}) => {
+const CurrencyMenu = ({ setClick, click}) => {
+  const {data,loading,error} = useQuery(GET_ALL_CURRENCY)
   const [selectedSort, setSelectedSort] = React.useState('')
-  const sortValue = (event) => {
-     setSelectedSort(event.target.value.slice(0, 2))
+
+  function sortValue ({target})  {
+     setSelectedSort(target.value)
   }
+
+  if(error) return  `Error! ${error.message}`
 
   return (
           <select
             value={selectedSort}
+            name="currency"
             onChange={sortValue}
-            onClick={()=> setClick(!click)}
-          >
+            onClick={()=> setClick(!click)}>
             <option>{selectedSort}</option>
             {
-              currency.map((options,index) => (
+             !loading && data.currencies.map(options => (
             <option
-              key={index}
+              key={options.symbol}
+              value={options.symbol}
             >
               {options.symbol} {options.label}
             </option>

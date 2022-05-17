@@ -3,6 +3,8 @@ import img from "../assets/img/image4.png";
 import glasses from '../assets/img/glasses.png'
 
 const Cart = () => {
+
+
   return (
     <div className="cart">
       <h1>Cart</h1>

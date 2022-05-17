@@ -1,6 +1,5 @@
 import React from 'react';
 
-//картинка покупки товара в корзине
 const ShoppingIcon = () => {
   return (
     <div className='shopping'>

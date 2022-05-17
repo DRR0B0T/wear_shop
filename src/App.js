@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout/>}>
             <Route index element={<Category/>}/>
-            <Route path='pdp' element={<PDP/>}/>
+            <Route path='pdp/:id/:name' element={<PDP/>}/>
             <Route path='cart' element={<Cart/>}/>
             <Route  path='*'   element={<Error/>} />
           </Route>

@@ -3,23 +3,12 @@ import {Link} from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import CurrencyMenu from "./CurrencyMenu";
 import Drawer from "./Drawer";
-import {useQuery} from "@apollo/client";
-import {GET_ALL_CURRENCY} from "../query/allData";
+
 
 const Header = () => {
-  const {data,loading,error} = useQuery(GET_ALL_CURRENCY)
-
   const [cartOpened, setCartOpened] = React.useState(false);
-  const [currency, setCurrency] = React.useState([]);
   const [click, setClick] = React.useState(false)
 
-
-  React.useEffect(()=>{
-    if(!loading) {
-      setCurrency(data.currencies)
-    }
-    if (error) return <p>Error :(</p>
-  },[data,loading, error])
 
   return (
     <>
@@ -41,7 +30,6 @@ const Header = () => {
             <CurrencyMenu
               click={click}
               setClick={setClick}
-              currency={currency}
             />
            <svg
              className={click ? 'rotate' : ''}

@@ -1,35 +1,38 @@
 import React from 'react';
 import ShoppingIcon from "./ShoppingIcon";
 import {Link} from "react-router-dom";
-import noImg from '../assets/img/noImg.png'
-
 
 const Card = ({newData}) => {
-  const [cartItem] = React.useState(false);
-  console.log(newData)
+  const [label, setLabel] = React.useState('')
+
+
+
 
   return (
     <>
-        {
-        newData.map(item =>
-            <div
-              key={item.id}
-              className="card">
-              <div className='card__img__wrapper'>
-              <Link to={'/pdp'}>
-                   <img className='card-img' src={item.gallery[0]} alt={'productImage'}/>
-              </Link>
-              </div>
-              {cartItem ? <ShoppingIcon/> : ''}
-              <h3 className="card__name">
-                {item.name}
-              </h3>
-              <span className="card__price"> $ 50</span>
+      {
+        newData.map(product =>
+          <div
+            key={product.id}
+            className="card">
+            <Link to={`pdp/${product.id}/${product.name}`}>
+            <div className='card__img__wrapper'>
+                <img className='card-img' src={product.gallery[0]} alt={'productImage'}/>
             </div>
-          )
-        }
+            <ShoppingIcon/>
+            <h3 className="card__name">
+              {product.name}
+            </h3>
+            <span className="card__price">
+              {product.prices[0].currency.symbol}
+              {product.prices[0].amount}
+            </span>
+          </Link>
+          </div>
+        )
+      }
     </>
-  );
+  )
 };
 
 export default Card;

@@ -21,7 +21,7 @@ const Drawer = ({cartOpened, setCartOpened}) => {
           <div className="drawer__items">
             <div className="drawer__items__item">
               <div className="drawer__items__item-price">
-                <h3>Apollo &nbsp; Running Sport</h3>
+                <h3>Apollo Running Sport</h3>
                 <span>$50.00</span>
                 <div className='drawer__items__item-size'>
                   <h3>Size:</h3>
