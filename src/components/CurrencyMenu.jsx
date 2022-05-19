@@ -1,7 +1,14 @@
 import React from 'react';
 import {useQuery} from "@apollo/client";
-import {GET_ALL_CURRENCY} from "../query/allData";
+import {gql} from '@apollo/client'
 
+export const GET_ALL_CURRENCY = gql`
+    query {
+        currencies {
+            label, symbol
+        }
+    }
+`
 
 const CurrencyMenu = ({ setClick, click}) => {
   const {data,loading,error} = useQuery(GET_ALL_CURRENCY)

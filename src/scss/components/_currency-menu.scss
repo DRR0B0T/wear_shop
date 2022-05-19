@@ -1,13 +1,13 @@
 @import '../variables';
 select {
   border: none;
-  border-radius: 4px;
   display: inline-block;
   font: inherit;
   width: 100px;
   padding: 1.5em;
   cursor: pointer;
   text-align: left;
+  font-weight: 500;
   margin: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -16,6 +16,7 @@ select {
   option {
     text-align: left;
     cursor: pointer;
+    font-weight: 500;
     &:focus {
       background: #bebebe;
     }

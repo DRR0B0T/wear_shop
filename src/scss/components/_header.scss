@@ -32,7 +32,7 @@
       font-weight: 400;
       top: 12px;
       cursor: pointer;
-      h3{
+     &__name {
         transition: color 0.3s ease-in-out;
         &:hover {
         color: $primary;

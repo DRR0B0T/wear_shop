@@ -50,9 +50,7 @@ const Cart = () => {
             </button>
           </div>
           <div className="cart-items__item-img">
-
             <img src={img} alt="product"/>
-
           </div>
           <div className='cart-items__item-svg'>
             <div className='svg-wrapper'>

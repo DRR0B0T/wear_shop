@@ -1,52 +1,22 @@
 import React from 'react';
 import Card from "../components/Card";
-import {useAllData} from "../hooks/useAllData";
-
-const Category = () => {
-  const {data, loading, error} = useAllData()
-  const [newData, setNewData] = React.useState([])
 
 
-  React.useEffect(() =>{
-    if(!loading) {
-      setNewData([...data.categories[0].products])
-    }
-  },[data])
 
-  if(loading) {
-    return `Loading...`
-  }
 
-  if (error) {
-    return  `Error! ${error.message}`
-  }
-
-  const handleChange = ({target}) => {
-    const arr = data.categories.find(item => item.name === target.value).products
-    setNewData(arr)
-  }
+const Category = ({categoryName, newData}) => {
 
   return (
     <div className="main">
-      <div
-        className="container">
-        <select
-          onChange={handleChange}
-          className='name'
-        >
-          {
-            data.categories.map(category=>
-              <option
-                value={category.name}
-                key={category.name}
-              >{category.name[0].toUpperCase() + category.name.slice(1)}</option>
-            )
-          }
-        </select>
+      <div className="container">
+        <h1 className='name'>{categoryName[0].toUpperCase() + categoryName.slice(1)}</h1>
         <div className='cards-block'>
-          <Card
-            newData={newData}
-          />
+          {
+           newData && newData.map(product =>
+              <Card
+                key={product.id}
+                {...product} />)
+          }
         </div>
       </div>
     </div>
