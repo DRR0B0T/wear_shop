@@ -14,6 +14,7 @@ function App() {
   const {data, loading, error} = useAllData()
   const [categoryName, setCategoryName] = React.useState('all')
   const [newData, setNewData] = React.useState([])
+
   React.useEffect(()=>{
     if(!loading) setNewData(data.categories.find(item=>item.name.includes(categoryName)).products)
   },[categoryName, data, loading])
@@ -24,11 +25,13 @@ function App() {
   return (
       <div className="App">
         <Routes>
-          <Route path='/' element={<Layout
+          <Route path='/' element={
+            <Layout
             data={data}
             categoryName={categoryName}
             setCategoryName={setCategoryName}
-          />}>
+          />
+          }>
             <Route index element={<Category
             newData={newData}
             categoryName={categoryName}

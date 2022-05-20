@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 const Card = ({id,inStock, name, gallery}) => {
 const [itemInCart, setItemInCart] = React.useState(false)
 
+
   return (
     <div
             key={id}
