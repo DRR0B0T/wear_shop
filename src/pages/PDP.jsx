@@ -1,6 +1,7 @@
 import React from 'react';
 import {useParams} from "react-router-dom";
 import {gql,  useQuery} from "@apollo/client";
+import {AppContext} from "../App";
 
 const GET_PRODUCT = gql `
     query Product($id: String!){
@@ -31,7 +32,7 @@ const GET_PRODUCT = gql `
 
 
 const PDP = () => {
-
+  const {currency} = React.useContext(AppContext)
   const [img, setImg] = React.useState('')
   const [selectedColor, setSelectedColor] = React.useState('')
   const [selectedSize, setSelectedSize] = React.useState('')
@@ -39,15 +40,13 @@ const PDP = () => {
   const [sizes, setSizes] = React.useState([])
   const [capacity, setCapacity] = React.useState([]);
 
-
-
   let {id} = useParams()
   const {data, loading, error} = useQuery(GET_PRODUCT, {
     variables: {
       id: id
     }
   })
-  const description = data.product.description
+
 
   React.useEffect(() =>{
     const colorItem = data?.product?.attributes.find(item => item.id === 'Color')
@@ -61,7 +60,9 @@ const PDP = () => {
     if (capacityItem !== undefined) setCapacity(capacityItem.items)
   },[data])
 
-  if (loading) return <h1>Loading...</h1>
+
+
+  if (loading) return null
 
   if (error) return `Error ${error.message}`
 
@@ -90,7 +91,7 @@ const PDP = () => {
                   <span>{data.product.brand}</span>
                 </div>
                 {
-                    sizes.length
+                    sizes.length > 0
                     ? (<div className='pdp-right-content__sizes'>
                     <h3>Size:</h3>
                     <div className='pdp-right-content__sizes-buttons'>
@@ -137,7 +138,7 @@ const PDP = () => {
                 }
                 <div className="pdp-right-content__price">
                   <h3>Price:</h3>
-                  <span>{data.product.prices[1].currency.symbol}{data.product.prices[1].amount}</span>
+                  <span>{currency}{data.product.prices.find(price=> price.currency.symbol === currency).amount}</span>
                   <button
                   >
                     Add to cart

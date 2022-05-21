@@ -1,52 +1,42 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import logo from "../assets/img/logo.png";
-import CurrencyMenu from "./CurrencyMenu";
+import CurrencySwitcher from "./CurrencySwitcher";
 import Drawer from "./Drawer";
 
 
 const Header = ({data, categoryName, setCategoryName}) => {
-
   const [cartOpened, setCartOpened] = React.useState(false);
-  const [click, setClick] = React.useState(false)
-
 
   return (
     <>
       <header className='header'>
         <div className="container">
-          <div
-            className="categories">
-            {
-              data.categories.map(category=>
-                <h3
-                  key={category.name}
-                  onClick={()=>setCategoryName(category.name)}
-                  className={categoryName === category.name ? 'categories__name active' : 'categories__name'}>
-                  {category.name}</h3>
-              )
-            }
+            <div className="categories">
 
-          </div>
+              {
+                data.categories.map(category=>
+                  <Link
+                    key={category.name}
+                    className={categoryName === category.name ? 'categories__name active' : 'categories__name'}
+                    to='/'>
+                  <h3
+                    className={categoryName === category.name ? 'categories__name active' : 'categories__name'}
+                    onClick={()=>setCategoryName(category.name)}
+                  >
+                      {category.name}
+                    </h3>
+                  </Link>
+                )
+              }
+            </div>
           <Link to='/'>
             <div className="logo">
               <img width="41" src={logo} alt="Logo"/>
             </div>
           </Link>
           <div className="sort__popup">
-            <div
-              className='currency-menu'>
-              <CurrencyMenu
-                click={click}
-                setClick={setClick}
-              />
-              <svg
-                className={click ? 'rotate' : ''}
-                width="10" height="5" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 0.5L4 3.5L7 0.5" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-
+              <CurrencySwitcher/>
             <div
               className='header-cart'
               onClick={() => setCartOpened(!cartOpened)}

@@ -4,7 +4,8 @@
   max-width: 100%;
 
   .container {
-    width: $container-width;
+    width: 100%;
+    margin: 0 auto;
     select:hover {
       background-color: rgba(0,0,0,0.05);
       border-radius: 5px;
@@ -21,9 +22,9 @@
     }
     .cards-block {
       position: relative;
-      width: 100%;
+      width: 90vw;
       top: 103px;
-      left: 100px;
+      left: 78px;
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;

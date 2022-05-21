@@ -189,7 +189,7 @@
       font-weight: 600;
       border: 1px solid $text;
       cursor: pointer;
-      transition: background-color 1s ease-in-out;
+      transition: background-color .3s ease-in-out;
       &:hover {
         background-color: $primary;
         color: #fff;

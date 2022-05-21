@@ -7,13 +7,14 @@
 
   .container {
     position: fixed;
+    width: 100%;
+    height: inherit;
     top: 0;
     left: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    height: inherit;
+    padding: 0  30px  0 101px;
     background-color: #fff;
     z-index: 1;
     @media (max-width: 768px) {
@@ -27,7 +28,6 @@
       align-items: flex-start;
       width: 234px;
       height: 56px;
-      left: 101px;
       text-transform: uppercase;
       font-weight: 400;
       top: 12px;
@@ -39,13 +39,17 @@
       }
         &.active {
           color: $primary;
-          border-bottom: 2px solid $primary;
+          border-bottom: 1px solid $primary;
           height: 100%;
         }
       }
 
     }
     .logo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       width: 41px;
       height: 41px;
     }
@@ -54,7 +58,6 @@
       align-items: center;
       width: 133px;
       height: 40px;
-      margin-right: 101px;
       cursor: pointer;
       .arrow {
         width: 30px;
@@ -68,6 +71,7 @@
         height: 100%;
         display: flex;
         align-items: center;
+        margin-left: 10px;
         .purchase {
           position: absolute;
           top: 0;
