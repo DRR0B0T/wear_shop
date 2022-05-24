@@ -2,6 +2,7 @@ import React from 'react';
 import {useParams} from "react-router-dom";
 import {gql,  useQuery} from "@apollo/client";
 import {AppContext} from "../App";
+import nextId from "react-id-generator";
 
 const GET_PRODUCT = gql `
     query Product($id: String!){
@@ -32,13 +33,16 @@ const GET_PRODUCT = gql `
 
 
 const PDP = () => {
-  const {currency} = React.useContext(AppContext)
+  const {currency,selectedProduct ,setSelectedProduct, price, setPrice} = React.useContext(AppContext)
   const [img, setImg] = React.useState('')
   const [selectedColor, setSelectedColor] = React.useState('')
   const [selectedSize, setSelectedSize] = React.useState('')
+  const [selectedCapacity, setSelectedCapacity] = React.useState('')
   const [colors,setColors] = React.useState([])
   const [sizes, setSizes] = React.useState([])
   const [capacity, setCapacity] = React.useState([]);
+
+  const htmlId = nextId()
 
   let {id} = useParams()
   const {data, loading, error} = useQuery(GET_PRODUCT, {
@@ -46,20 +50,38 @@ const PDP = () => {
       id: id
     }
   })
-
+React.useEffect(()=>{
+  const productPrice = data?.product?.prices.find(item=> item.currency.symbol === currency).amount
+  if (productPrice) setPrice(productPrice)
+})
 
   React.useEffect(() =>{
     const colorItem = data?.product?.attributes.find(item => item.id === 'Color')
     const sizeItem = data?.product?.attributes.find(item => item.id === 'Size')
     const capacityItem = data?.product?.attributes.find(item => item.id === 'Capacity')
+
     if (data) {
       setImg(data?.product?.gallery[0])
     }
     if (colorItem !== undefined) setColors(colorItem.items)
     if (sizeItem !== undefined) setSizes(sizeItem.items)
     if (capacityItem !== undefined) setCapacity(capacityItem.items)
+
   },[data])
 
+  const object = {
+    id: htmlId,
+    name: data?.product.name,
+    image: data?.product.gallery,
+    brand: data?.product.brand,
+    color: selectedColor,
+    size: selectedSize,
+    capacity: selectedCapacity,
+    currency,
+    price}
+  const addProductToCart = () => {
+    setSelectedProduct(prev => [...prev, object])
+  }
 
 
   if (loading) return null
@@ -98,9 +120,9 @@ const PDP = () => {
                       {
                         sizes.map(size =>
                           <button
-                            onClick={() => setSelectedSize(size.id)}
+                            onClick={() => setSelectedSize(size.value)}
                             key={size.id}
-                            className={selectedSize === size.id ? 'active' : ''}>{size.value}</button>)
+                            className={selectedSize === size.value ? 'active' : ''}>{size.value}</button>)
                       }
                     </div>
                     </div>)
@@ -110,9 +132,9 @@ const PDP = () => {
                         {
                           capacity.map(capacity =>
                             <button
-                              onClick={() => setSelectedSize(capacity.id)}
+                              onClick={() => setSelectedCapacity(capacity.value)}
                               key={capacity.id}
-                              className={selectedSize === capacity.id ? 'active' : ''}>{capacity.value}</button>)
+                              className={selectedCapacity === capacity.value ? 'active' : ''}>{capacity.value}</button>)
                         }
                       </div>
                     </div>)
@@ -138,8 +160,9 @@ const PDP = () => {
                 }
                 <div className="pdp-right-content__price">
                   <h3>Price:</h3>
-                  <span>{currency}{data.product.prices.find(price=> price.currency.symbol === currency).amount}</span>
+                  <span>{currency}{price}</span>
                   <button
+                    onClick={addProductToCart}
                   >
                     Add to cart
                   </button>

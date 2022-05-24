@@ -3,19 +3,23 @@ import CartItem from "../components/CartItem";
 import {AppContext} from "../App";
 
 const Cart = () => {
-  const {currency} = React.useContext(AppContext)
+  const {currency,selectedProduct, price} = React.useContext(AppContext)
+  const [productCart, setProductCart] = React.useState([])
+
+  React.useEffect(()=>{
+    setProductCart(prev=> [prev, selectedProduct])
+  },[selectedProduct])
 
   return (
     <div className="cart">
       <h1>Cart</h1>
       <div className="cart-items">
-        <div>
-        <hr style={{marginTop: 30, borderBottom: 1, borderColor: '#E5E5E5'}}/>
-        <CartItem />
-        </div>
-        <div>
-          <hr style={{marginTop: 30, borderBottom: 1, borderColor: '#E5E5E5'}}/>
-        </div>
+          {
+            selectedProduct && selectedProduct.map(product =>
+            <CartItem
+              key={product.id}
+              {...product}/>)
+          }
       </div>
       <div className='total__order'>
        <div className='total__order-bill'>

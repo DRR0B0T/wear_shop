@@ -18,21 +18,19 @@ function App() {
   const [currency, setCurrency] = React.useState('$')
   const [visible, setVisible] = React.useState(false)
   const [amount, setAmount] = React.useState([])
-
-
-
+  const [selectedProduct, setSelectedProduct] = React.useState([])
+  const [price, setPrice] = React.useState(0)
+  console.log(selectedProduct)
   React.useEffect(()=>{
-
     if(!loading) {
-
       setNewData(data.categories.find(item => item.name.includes(categoryName)).products)
       setAmount(data.categories[0].products
         .map(item=>item.prices)
         .flat()
         .filter(item=> item.currency.symbol === currency))
-
     }
   },[categoryName, data, loading, currency])
+
 
   if(loading) return null
   if (error) return `Error ${error.message}`
@@ -43,7 +41,11 @@ function App() {
       setCurrency,
       visible,
       setVisible,
-      amount
+      amount,
+      selectedProduct,
+      setSelectedProduct,
+      price,
+      setPrice,
     }}>
       <div className="App">
         <Routes>
