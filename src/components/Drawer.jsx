@@ -5,9 +5,9 @@ import DrawerItem from "./DrawerItem";
 import {AppContext} from "../App";
 
 const Drawer = ({cartOpened, setCartOpened}) => {
-  const {currency, visible,selectedProduct} = React.useContext(AppContext)
+  const {currency, visible,selectedProduct, sum} = React.useContext(AppContext)
 
-
+  const selectItem = selectedProduct.filter(item=> item.name )
 
   return (
     <>
@@ -25,16 +25,17 @@ const Drawer = ({cartOpened, setCartOpened}) => {
               </div>
               <div className="drawer__items">
                 {
-                  selectedProduct &&  selectedProduct.map(product=>
+                    selectedProduct.map(product=>
                     <DrawerItem
                       key={product.id}
                       {...product}
+                      setCartOpened={setCartOpened}
                     />
                   )
                 }
               </div>
               <div className="drawer__total">
-                <span>Total</span> <span>{currency}200</span>
+                <span>Total:</span> <span>{currency}{sum}</span>
               </div>
               <div className="drawer__footer">
                 <Link

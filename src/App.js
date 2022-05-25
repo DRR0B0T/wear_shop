@@ -20,8 +20,12 @@ function App() {
   const [amount, setAmount] = React.useState([])
   const [selectedProduct, setSelectedProduct] = React.useState([])
   const [price, setPrice] = React.useState(0)
-  console.log(selectedProduct)
+  let sum = selectedProduct.reduce((acc, obj) => acc += obj.price, 0).toFixed(2)
+
+
+
   React.useEffect(()=>{
+
     if(!loading) {
       setNewData(data.categories.find(item => item.name.includes(categoryName)).products)
       setAmount(data.categories[0].products
@@ -46,6 +50,7 @@ function App() {
       setSelectedProduct,
       price,
       setPrice,
+      sum
     }}>
       <div className="App">
         <Routes>

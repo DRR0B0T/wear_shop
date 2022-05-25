@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {gql,  useQuery} from "@apollo/client";
 import {AppContext} from "../App";
 import nextId from "react-id-generator";
@@ -12,6 +12,7 @@ const GET_PRODUCT = gql `
             brand
             gallery
             description
+            inStock
             prices{
                 amount
                 currency {
@@ -33,28 +34,33 @@ const GET_PRODUCT = gql `
 
 
 const PDP = () => {
-  const {currency,selectedProduct ,setSelectedProduct, price, setPrice} = React.useContext(AppContext)
+  const {currency,setSelectedProduct, price, setPrice} = React.useContext(AppContext)
   const [img, setImg] = React.useState('')
-  const [selectedColor, setSelectedColor] = React.useState('')
-  const [selectedSize, setSelectedSize] = React.useState('')
-  const [selectedCapacity, setSelectedCapacity] = React.useState('')
+
   const [colors,setColors] = React.useState([])
   const [sizes, setSizes] = React.useState([])
   const [capacity, setCapacity] = React.useState([]);
 
+  const [selectedColor, setSelectedColor] = React.useState('')
+  const [selectedSize, setSelectedSize] = React.useState('')
+  const [selectedCapacity, setSelectedCapacity] = React.useState('')
+
   const htmlId = nextId()
 
+
   let {id} = useParams()
+
   const {data, loading, error} = useQuery(GET_PRODUCT, {
     variables: {
       id: id
     }
   })
+
+
 React.useEffect(()=>{
   const productPrice = data?.product?.prices.find(item=> item.currency.symbol === currency).amount
   if (productPrice) setPrice(productPrice)
 })
-
   React.useEffect(() =>{
     const colorItem = data?.product?.attributes.find(item => item.id === 'Color')
     const sizeItem = data?.product?.attributes.find(item => item.id === 'Size')
@@ -74,13 +80,15 @@ React.useEffect(()=>{
     name: data?.product.name,
     image: data?.product.gallery,
     brand: data?.product.brand,
+    inStock: data?.product.inStock,
     color: selectedColor,
     size: selectedSize,
     capacity: selectedCapacity,
     currency,
-    price}
+    price
+  }
   const addProductToCart = () => {
-    setSelectedProduct(prev => [...prev, object])
+      setSelectedProduct(prev => [...prev, object])
   }
 
 
@@ -122,7 +130,8 @@ React.useEffect(()=>{
                           <button
                             onClick={() => setSelectedSize(size.value)}
                             key={size.id}
-                            className={selectedSize === size.value ? 'active' : ''}>{size.value}</button>)
+                            className={selectedSize === size.value ? 'active' : ''}>{size.value}</button>
+                        )
                       }
                     </div>
                     </div>)
@@ -161,11 +170,13 @@ React.useEffect(()=>{
                 <div className="pdp-right-content__price">
                   <h3>Price:</h3>
                   <span>{currency}{price}</span>
-                  <button
-                    onClick={addProductToCart}
-                  >
-                    Add to cart
-                  </button>
+                 <Link to='/cart'>
+                   <button
+                     onClick={addProductToCart}
+                   >
+                     Add to cart
+                   </button>
+                 </Link>
                 </div>
                 <div
                   dangerouslySetInnerHTML={{__html: data.product.description}}

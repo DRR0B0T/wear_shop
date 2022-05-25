@@ -83,14 +83,10 @@
             margin-right: 8px;
             text-align: center;
             font-weight: 500;
-            cursor: pointer;
             font-family: 'Source Sans Pro', sans-serif;
             background: $background;
             transition: all 0.3s ease-in-out;
-            &:hover {
-              background: $text;
-              color: $background;
-            }
+
           &.active {
             background: $text;
             color: $background;

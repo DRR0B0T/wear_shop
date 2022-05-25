@@ -2,6 +2,8 @@ import React from 'react';
 
 const CartItem = ({id,name,brand,image,color,size,currency,price, capacity}) => {
   let [cartImage, setCartImage] = React.useState(0)
+  const [img,setImg] =React.useState('')
+
   const handleChangeImageBack = () => {
       setCartImage(--cartImage)
   }
@@ -9,6 +11,16 @@ const CartItem = ({id,name,brand,image,color,size,currency,price, capacity}) => 
   const handleChangeImageAhead = () => {
     setCartImage(++cartImage)
   }
+
+  React.useEffect(()=>{
+    const render = cartImage !== -1 && cartImage !== image.length - 1 ? image[cartImage] : setCartImage(0)
+    if (cartImage !== -1 && cartImage !== image.length - 1) {
+      setImg(image[cartImage])
+    } else {
+      setCartImage(0)
+    }
+  },[])
+
   return (
    <>
      <div>
@@ -44,7 +56,9 @@ const CartItem = ({id,name,brand,image,color,size,currency,price, capacity}) => 
              <line x1="5" y1="12" x2="19" y2="12"></line>
            </svg>
          </button>
-         <input defaultValue={1} type="text"/>
+         <input
+
+           defaultValue={0} type="text"/>
          <button
 
          >
@@ -59,9 +73,7 @@ const CartItem = ({id,name,brand,image,color,size,currency,price, capacity}) => 
        </div>
        <div className="cart-items__item-img">
          <img
-           src={cartImage !== -1 && cartImage !== image.length - 1
-             ? image[cartImage]
-             : setCartImage(0)} alt="product"/>
+           src={img} alt="product"/>
        </div>
        <div className='cart-items__item-svg'>
          <button
