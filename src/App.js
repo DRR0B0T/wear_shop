@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {Route, Routes} from 'react-router-dom'
 
 import './scss/App.scss';
@@ -16,16 +16,16 @@ function App() {
   const [categoryName, setCategoryName] = React.useState('all')
   const [newData, setNewData] = React.useState([])
   const [currency, setCurrency] = React.useState('$')
+  const [objectCurrency, setObjectCurrency] = React.useState('')
   const [visible, setVisible] = React.useState(false)
   const [amount, setAmount] = React.useState([])
   const [selectedProduct, setSelectedProduct] = React.useState([])
   const [price, setPrice] = React.useState(0)
-  let sum = selectedProduct.reduce((acc, obj) => acc += obj.price, 0).toFixed(2)
-
+  const [object, setObject] = React.useState({})
+  let [sum,setSum] = React.useState(0)
 
 
   React.useEffect(()=>{
-
     if(!loading) {
       setNewData(data.categories.find(item => item.name.includes(categoryName)).products)
       setAmount(data.categories[0].products
@@ -33,7 +33,8 @@ function App() {
         .flat()
         .filter(item=> item.currency.symbol === currency))
     }
-  },[categoryName, data, loading, currency])
+    setSum(selectedProduct.reduce((acc, obj) => acc += obj.price, 0).toFixed(2))
+  },[categoryName, data, loading, currency,selectedProduct])
 
 
   if(loading) return null
@@ -50,7 +51,10 @@ function App() {
       setSelectedProduct,
       price,
       setPrice,
-      sum
+      sum,
+      setObjectCurrency,
+      objectCurrency,
+      object, setObject
     }}>
       <div className="App">
         <Routes>

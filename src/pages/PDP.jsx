@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {gql,  useQuery} from "@apollo/client";
 import {AppContext} from "../App";
 import nextId from "react-id-generator";
@@ -34,7 +34,7 @@ const GET_PRODUCT = gql `
 
 
 const PDP = () => {
-  const {currency,setSelectedProduct, price, setPrice} = React.useContext(AppContext)
+  const {currency, setObject,setSelectedProduct, price, setPrice} = React.useContext(AppContext)
   const [img, setImg] = React.useState('')
 
   const [colors,setColors] = React.useState([])
@@ -44,31 +44,28 @@ const PDP = () => {
   const [selectedColor, setSelectedColor] = React.useState('')
   const [selectedSize, setSelectedSize] = React.useState('')
   const [selectedCapacity, setSelectedCapacity] = React.useState('')
-
+  let navigate = useNavigate()
   const htmlId = nextId()
 
 
   let {id} = useParams()
-
   const {data, loading, error} = useQuery(GET_PRODUCT, {
     variables: {
       id: id
     }
   })
 
-
-React.useEffect(()=>{
-  const productPrice = data?.product?.prices.find(item=> item.currency.symbol === currency).amount
-  if (productPrice) setPrice(productPrice)
-})
   React.useEffect(() =>{
     const colorItem = data?.product?.attributes.find(item => item.id === 'Color')
     const sizeItem = data?.product?.attributes.find(item => item.id === 'Size')
     const capacityItem = data?.product?.attributes.find(item => item.id === 'Capacity')
+    const productPrice = data?.product?.prices.find(item=> item.currency.symbol === currency).amount
 
     if (data) {
       setImg(data?.product?.gallery[0])
     }
+    if (productPrice) setPrice(productPrice)
+
     if (colorItem !== undefined) setColors(colorItem.items)
     if (sizeItem !== undefined) setSizes(sizeItem.items)
     if (capacityItem !== undefined) setCapacity(capacityItem.items)
@@ -87,8 +84,14 @@ React.useEffect(()=>{
     currency,
     price
   }
+
   const addProductToCart = () => {
-      setSelectedProduct(prev => [...prev, object])
+     if(object.color || object.size || object.capacity) {
+       setSelectedProduct(prev => [...prev, object])
+       setObject(object)
+       navigate("/cart", { replace: true })
+     }
+
   }
 
 
@@ -170,13 +173,11 @@ React.useEffect(()=>{
                 <div className="pdp-right-content__price">
                   <h3>Price:</h3>
                   <span>{currency}{price}</span>
-                 <Link to='/cart'>
                    <button
                      onClick={addProductToCart}
                    >
                      Add to cart
                    </button>
-                 </Link>
                 </div>
                 <div
                   dangerouslySetInnerHTML={{__html: data.product.description}}

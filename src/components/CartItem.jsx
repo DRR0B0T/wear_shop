@@ -1,25 +1,34 @@
 import React from 'react';
+import Input from "./Input";
+import {AppContext} from "../App";
 
 const CartItem = ({id,name,brand,image,color,size,currency,price, capacity}) => {
+  const {setObjectCurrency} = React.useContext(AppContext)
   let [cartImage, setCartImage] = React.useState(0)
-  const [img,setImg] =React.useState('')
+
+  React.useEffect(()=>{
+    setObjectCurrency(currency)
+  },[currency])
+
 
   const handleChangeImageBack = () => {
-      setCartImage(--cartImage)
+      if(cartImage === 0) {
+        setCartImage(image.length-1)
+      } else {
+        setCartImage(--cartImage)
+      }
   }
 
   const handleChangeImageAhead = () => {
-    setCartImage(++cartImage)
+    if(cartImage === image.length - 1) {
+      return setCartImage(0)
+    } else {
+      setCartImage(++cartImage)
+    }
   }
 
-  React.useEffect(()=>{
-    const render = cartImage !== -1 && cartImage !== image.length - 1 ? image[cartImage] : setCartImage(0)
-    if (cartImage !== -1 && cartImage !== image.length - 1) {
-      setImg(image[cartImage])
-    } else {
-      setCartImage(0)
-    }
-  },[])
+
+
 
   return (
    <>
@@ -48,32 +57,11 @@ const CartItem = ({id,name,brand,image,color,size,currency,price, capacity}) => 
          }
        </div>
        <div className="cart-items__item-counter">
-         <button>
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round" strokeLinejoin="round" className="feather feather-plus">
-             <line x1="12" y1="5" x2="12" y2="19"></line>
-             <line x1="5" y1="12" x2="19" y2="12"></line>
-           </svg>
-         </button>
-         <input
-
-           defaultValue={0} type="text"/>
-         <button
-
-         >
-           <svg
-
-             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             strokeWidth="2"
-             strokeLinecap="round" strokeLinejoin="round" className="feather feather-minus">
-             <line x1="5" y1="12" x2="19" y2="12"></line>
-           </svg>
-         </button>
+         <Input/>
        </div>
        <div className="cart-items__item-img">
          <img
-           src={img} alt="product"/>
+           src={image[cartImage]} alt="product"/>
        </div>
        <div className='cart-items__item-svg'>
          <button

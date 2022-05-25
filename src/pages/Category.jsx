@@ -15,7 +15,8 @@ const Category = ({categoryName, newData}) => {
            newData && newData.map(product =>
               <Card
                 key={product.id}
-                {...product} />)
+                {...product} />
+            )
           }
         </div>
       </div>

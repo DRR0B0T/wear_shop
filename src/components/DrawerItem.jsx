@@ -1,25 +1,8 @@
 import React from 'react';
 import img from "../assets/img/image4.png";
-import {AppContext} from "../App";
+import Input from "./Input";
 
 const DrawerItem = ({id,name,image,color,size,currency,price, capacity}) => {
-  const { selectedProduct, setSelectedProduct} = React.useContext(AppContext)
-  let [counter, setCounter] = React.useState(1)
-
-  const handleClickPlus = () => {
-      setCounter(++counter)
-  }
-
-  const handleClickMinus = () => {
-       setCounter(--counter)
-       if(counter === 0 )setSelectedProduct([])
-  }
-
-  const onChangeValueInput = (e) => {
-      setCounter(+e.target.value)
-  }
-
-
   return (
      <div className="drawer__items__item">
           <div className="drawer__items__item-price">
@@ -51,28 +34,7 @@ const DrawerItem = ({id,name,image,color,size,currency,price, capacity}) => {
             }
           </div>
           <div className="drawer__items__item-counter">
-            <button
-              onClick={handleClickPlus}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                   strokeWidth="2"
-                   strokeLinecap="round" strokeLinejoin="round" className="feather feather-plus">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </button>
-            <input
-              onChange={onChangeValueInput}
-              value={counter}/>
-            <button
-              onClick={handleClickMinus}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                   strokeWidth="2"
-                   strokeLinecap="round" strokeLinejoin="round" className="feather feather-minus">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </button>
+            <Input/>
           </div>
           <div className="drawer__items__item-img">
             <img  src={image[0]} alt="product"/>

@@ -3,9 +3,11 @@ import {Link} from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import CurrencySwitcher from "./CurrencySwitcher";
 import Drawer from "./Drawer";
+import {AppContext} from "../App";
 
 
 const Header = ({data, categoryName, setCategoryName}) => {
+  const {selectedProduct} = React.useContext(AppContext)
   const [cartOpened, setCartOpened] = React.useState(false);
 
   return (
@@ -58,9 +60,11 @@ const Header = ({data, categoryName, setCategoryName}) => {
                   fill="#43464E"/>
               </svg>
 
-              <div className='purchase'>
-                <span>9</span>
-              </div>
+              {
+                selectedProduct.length !== 0 && <div className='purchase'>
+                  <span>{selectedProduct.length}</span>
+                </div>
+              }
 
             </div>
           </div>
