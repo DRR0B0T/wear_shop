@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React from 'react'
 import {Route, Routes} from 'react-router-dom'
 
 import './scss/App.scss';
@@ -8,6 +8,7 @@ import PDP from "./pages/PDP";
 import Category from "./pages/Category";
 import Cart from "./pages/Cart";
 import {useAllData} from "./hooks/useAllData";
+import Spinner from "./components/Spinner";
 
 export const AppContext = React.createContext({})
 
@@ -21,9 +22,7 @@ function App() {
   const [amount, setAmount] = React.useState([])
   const [selectedProduct, setSelectedProduct] = React.useState([])
   const [price, setPrice] = React.useState(0)
-  const [object, setObject] = React.useState({})
   let [sum,setSum] = React.useState(0)
-
 
   React.useEffect(()=>{
     if(!loading) {
@@ -33,11 +32,12 @@ function App() {
         .flat()
         .filter(item=> item.currency.symbol === currency))
     }
-    setSum(selectedProduct.reduce((acc, obj) => acc += obj.price, 0).toFixed(2))
-  },[categoryName, data, loading, currency,selectedProduct])
+    let summa = Number(selectedProduct.reduce((acc, obj) => acc += obj.price, 0).toFixed(2))
+    setSum(summa)
+  },[categoryName, data, loading, currency,selectedProduct,selectedProduct])
 
 
-  if(loading) return null
+  if(loading) return <Spinner/>
   if (error) return `Error ${error.message}`
 
   return (
@@ -54,7 +54,6 @@ function App() {
       sum,
       setObjectCurrency,
       objectCurrency,
-      object, setObject
     }}>
       <div className="App">
         <Routes>

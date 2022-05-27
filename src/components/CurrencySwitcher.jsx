@@ -19,7 +19,7 @@ const CurrencySwitcher = () => {
 
   if (loading) return null
 
-  if(error) return  `Error! ${error.message}`
+  if (error) return  `Error! ${error.message}`
 
 
 

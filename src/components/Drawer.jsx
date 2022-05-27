@@ -5,7 +5,7 @@ import DrawerItem from "./DrawerItem";
 import {AppContext} from "../App";
 
 const Drawer = ({cartOpened, setCartOpened}) => {
-  const {currency, visible,selectedProduct, sum, objectCurrency} = React.useContext(AppContext)
+  const { visible,selectedProduct, sum, objectCurrency} = React.useContext(AppContext)
 
 
   return (
@@ -24,7 +24,7 @@ const Drawer = ({cartOpened, setCartOpened}) => {
               </div>
               <div className="drawer__items">
                 {
-                    selectedProduct.map(product=>
+                 selectedProduct.length > 0 && [...new Set(selectedProduct)].map((product, i)=>
                     <DrawerItem
                       key={product.id}
                       {...product}

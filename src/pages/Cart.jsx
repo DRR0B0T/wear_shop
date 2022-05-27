@@ -1,7 +1,7 @@
 import React from 'react';
 import CartItem from "../components/CartItem";
 import {AppContext} from "../App";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, } from "react-router-dom";
 
 const Cart = () => {
   const {selectedProduct,  sum, objectCurrency} = React.useContext(AppContext)
@@ -14,20 +14,18 @@ const Cart = () => {
    if (selectedProduct.length === 0) {
      return navigate("/", { replace: true })
    }
- },[selectedProduct])
-
-
-
+ },[selectedProduct,navigate])
 
   return (
     <div className="cart">
       <h1>Cart</h1>
       <div className="cart-items">
           {
-            selectedProduct && selectedProduct.map(product =>
+            selectedProduct.length > 0 && [...new Set(selectedProduct)].map((product) =>
             <CartItem
               key={product.id}
-              {...product}/>)
+              {...product}/>
+            )
           }
       </div>
       <div className='total__order'>

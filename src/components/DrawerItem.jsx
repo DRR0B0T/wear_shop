@@ -2,7 +2,7 @@ import React from 'react';
 import img from "../assets/img/image4.png";
 import Input from "./Input";
 
-const DrawerItem = ({id,name,image,color,size,currency,price, capacity}) => {
+const DrawerItem = ({id,name,image,color,size,currency,price, capacity,inStock}) => {
   return (
      <div className="drawer__items__item">
           <div className="drawer__items__item-price">
@@ -34,7 +34,10 @@ const DrawerItem = ({id,name,image,color,size,currency,price, capacity}) => {
             }
           </div>
           <div className="drawer__items__item-counter">
-            <Input/>
+            <Input
+            id={id}
+            inStock={inStock}
+            />
           </div>
           <div className="drawer__items__item-img">
             <img  src={image[0]} alt="product"/>

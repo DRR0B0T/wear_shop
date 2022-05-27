@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link, useNavigate, useParams} from "react-router-dom";
-import {gql,  useQuery} from "@apollo/client";
+import {useNavigate, useParams} from "react-router-dom";
+import {gql, useQuery} from "@apollo/client";
 import {AppContext} from "../App";
-import nextId from "react-id-generator";
+import Spinner from "../components/Spinner";
 
 const GET_PRODUCT = gql `
     query Product($id: String!){
@@ -34,7 +34,7 @@ const GET_PRODUCT = gql `
 
 
 const PDP = () => {
-  const {currency, setObject,setSelectedProduct, price, setPrice} = React.useContext(AppContext)
+  const {currency,setSelectedProduct, price, setPrice,setArray} = React.useContext(AppContext)
   const [img, setImg] = React.useState('')
 
   const [colors,setColors] = React.useState([])
@@ -44,11 +44,11 @@ const PDP = () => {
   const [selectedColor, setSelectedColor] = React.useState('')
   const [selectedSize, setSelectedSize] = React.useState('')
   const [selectedCapacity, setSelectedCapacity] = React.useState('')
+
   let navigate = useNavigate()
-  const htmlId = nextId()
-
-
   let {id} = useParams()
+
+
   const {data, loading, error} = useQuery(GET_PRODUCT, {
     variables: {
       id: id
@@ -70,10 +70,10 @@ const PDP = () => {
     if (sizeItem !== undefined) setSizes(sizeItem.items)
     if (capacityItem !== undefined) setCapacity(capacityItem.items)
 
-  },[data])
+  },[data, currency, setPrice])
 
   const object = {
-    id: htmlId,
+    id: id,
     name: data?.product.name,
     image: data?.product.gallery,
     brand: data?.product.brand,
@@ -88,14 +88,12 @@ const PDP = () => {
   const addProductToCart = () => {
      if(object.color || object.size || object.capacity) {
        setSelectedProduct(prev => [...prev, object])
-       setObject(object)
        navigate("/cart", { replace: true })
      }
-
   }
 
 
-  if (loading) return null
+  if (loading) return <Spinner/>
 
   if (error) return `Error ${error.message}`
 

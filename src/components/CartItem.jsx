@@ -2,13 +2,13 @@ import React from 'react';
 import Input from "./Input";
 import {AppContext} from "../App";
 
-const CartItem = ({id,name,brand,image,color,size,currency,price, capacity}) => {
+const CartItem = ({id,name,brand,image,color,size,capacity,currency,price, inStock}) => {
   const {setObjectCurrency} = React.useContext(AppContext)
   let [cartImage, setCartImage] = React.useState(0)
 
   React.useEffect(()=>{
     setObjectCurrency(currency)
-  },[currency])
+  },[currency, setObjectCurrency])
 
 
   const handleChangeImageBack = () => {
@@ -57,7 +57,14 @@ const CartItem = ({id,name,brand,image,color,size,currency,price, capacity}) => 
          }
        </div>
        <div className="cart-items__item-counter">
-         <Input/>
+         <Input
+           inStock={inStock}
+           name={name}
+           id={id}
+           color={color}
+           size={size}
+           capacity={capacity}
+         />
        </div>
        <div className="cart-items__item-img">
          <img

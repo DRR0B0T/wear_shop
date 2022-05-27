@@ -1,27 +1,22 @@
 import React from 'react';
 import {AppContext} from "../App";
-import nextId from "react-id-generator";
 
-const Input = () => {
-  const { selectedProduct, setSelectedProduct, object, setObject} = React.useContext(AppContext)
-  let [counter, setCounter] = React.useState(1)
-  const htmlId = nextId()
-  console.log(selectedProduct)
+const Input = ({id,inStock}) => {
+  let {selectedProduct,setSelectedProduct} = React.useContext(AppContext)
+  const itemLength = (id) => {
+    return selectedProduct.filter(item=> item.id === id).length
+  }
+
   const handleClickPlus = () => {
-    setCounter(++counter)
-    setSelectedProduct(prev => [...prev, {
-      ...object,
-      id: htmlId
-    }])
+    const select = selectedProduct.find(item=>item.id === id)
+    if(inStock)setSelectedProduct(prev => [...prev,select])
   }
+  console.log(selectedProduct)
+  const handleClickMinus = (id) => {
+    const index = selectedProduct.indexOf(selectedProduct.find(item => item.id === id))
 
-  const handleClickMinus = () => {
-    setCounter(--counter)
-    if(counter === 0 )setSelectedProduct([])
-  }
-
-  const onChangeValueInput = (e) => {
-    setCounter(+e.target.value)
+    setSelectedProduct(prev => [...prev,...prev.filter(item=>item.id===id).slice(0, prev.length - 1)])
+    if(selectedProduct.length <= 1) setSelectedProduct(prev=> prev.filter(item=>item.id!== id))
   }
 
 
@@ -38,10 +33,10 @@ const Input = () => {
         </svg>
       </button>
       <input
-        onChange={onChangeValueInput}
-        value={counter}/>
+        onChange={e=>e.target.value}
+        value={itemLength(id)}/>
       <button
-        onClick={handleClickMinus}
+        onClick={()=>handleClickMinus(id)}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              strokeWidth="2"
