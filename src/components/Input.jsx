@@ -11,12 +11,22 @@ const Input = ({id,inStock}) => {
     const select = selectedProduct.find(item=>item.id === id)
     if(inStock)setSelectedProduct(prev => [...prev,select])
   }
-  console.log(selectedProduct)
-  const handleClickMinus = (id) => {
-    const index = selectedProduct.indexOf(selectedProduct.find(item => item.id === id))
 
-    setSelectedProduct(prev => [...prev,...prev.filter(item=>item.id===id).slice(0, prev.length - 1)])
-    if(selectedProduct.length <= 1) setSelectedProduct(prev=> prev.filter(item=>item.id!== id))
+  console.log(selectedProduct)
+  const handleClickMinus = () => {
+    const index = selectedProduct.indexOf(selectedProduct.find(item => item.id === id))
+    const lastIndex = selectedProduct.filter(item=>item.id===id).slice(0, selectedProduct.length - 1).length - 1
+    const filtered = selectedProduct.filter(item=>item.id===id).slice(0,-1)
+    const leftArr = selectedProduct.slice(0, index)
+    const rightArr = selectedProduct.sort((a,b)=>a-b).slice(lastIndex, selectedProduct.length - 1)
+    const newArr = selectedProduct.filter(item=>item.id!==id)
+    // console.log( ...selectedProduct.splice(index, 1 , filtered))
+
+      // [...prev.filter(item => item.id !== id), ...prev.filter(item=> item.id === id).slice(0,-1)]
+    setSelectedProduct( prev => prev.filter(item=> item.id === id).slice(0,-1)) //Todo: need to found the answer, how delete item is right
+
+
+    if(selectedProduct.length < 1) setSelectedProduct(prev=> prev.filter(item=>item.id!== id))
   }
 
 
@@ -36,7 +46,7 @@ const Input = ({id,inStock}) => {
         onChange={e=>e.target.value}
         value={itemLength(id)}/>
       <button
-        onClick={()=>handleClickMinus(id)}
+        onClick={handleClickMinus}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              strokeWidth="2"
