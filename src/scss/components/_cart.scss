@@ -17,6 +17,15 @@
       justify-content: space-between;
       margin-top: 20px;
       height: 288px;
+      .delete__btn{
+        position:absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+      }
+
       &-price {
 
         width: 136px;

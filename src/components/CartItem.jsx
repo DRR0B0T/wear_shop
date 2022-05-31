@@ -1,14 +1,18 @@
 import React from 'react';
 import Input from "./Input";
 import {AppContext} from "../App";
+import cross from '../assets/img/cross.svg'
 
-const CartItem = ({id,name,brand,image,color,size,capacity,currency,price, inStock}) => {
-  const {setObjectCurrency} = React.useContext(AppContext)
+const CartItem = ({id,name,brand,image,color,size,capacity,currency,price, inStock, counter}) => {
+  const {setObjectCurrency, setCart, setCounter} = React.useContext(AppContext)
   let [cartImage, setCartImage] = React.useState(0)
+
+
 
   React.useEffect(()=>{
     setObjectCurrency(currency)
-  },[currency, setObjectCurrency])
+    setCounter(counter)
+  },[currency, setObjectCurrency, counter])
 
 
   const handleChangeImageBack = () => {
@@ -27,7 +31,9 @@ const CartItem = ({id,name,brand,image,color,size,capacity,currency,price, inSto
     }
   }
 
-
+  const onDeleteProduct = () => {
+    setCart(cart=> cart.filter(product => product.id !== id))
+  }
 
 
   return (
@@ -58,6 +64,7 @@ const CartItem = ({id,name,brand,image,color,size,capacity,currency,price, inSto
        </div>
        <div className="cart-items__item-counter">
          <Input
+           counter={counter}
            inStock={inStock}
            name={name}
            id={id}
@@ -69,6 +76,11 @@ const CartItem = ({id,name,brand,image,color,size,capacity,currency,price, inSto
        <div className="cart-items__item-img">
          <img
            src={image[cartImage]} alt="product"/>
+         <button
+           onClick={onDeleteProduct}
+           className='delete__btn'>
+           <img src={cross} alt="crossIcon"/>
+         </button>
        </div>
        <div className='cart-items__item-svg'>
          <button

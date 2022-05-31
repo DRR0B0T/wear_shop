@@ -16,6 +16,18 @@ const CurrencySwitcher = () => {
   const {data,loading,error} = useQuery(GET_ALL_CURRENCY)
   const {currency, setCurrency,visible, setVisible} = React.useContext(AppContext)
 
+  const sortRef = React.useRef();
+
+  const handleOutsideClick = (event) => {
+    const path = event.path || (event.composedPath && event.composedPath());
+    if (!path.includes(sortRef.current)) {
+      setVisible(false);
+    }
+  };
+
+  React.useEffect(() => {
+    document.body.addEventListener('click', handleOutsideClick);
+  }, []);
 
   if (loading) return null
 
@@ -25,6 +37,7 @@ const CurrencySwitcher = () => {
 
   return (
     <div
+      ref={sortRef}
       onClick={()=>setVisible(!visible)}
       className='currency__switcher'>
       <div className='currency__switcher_name'>

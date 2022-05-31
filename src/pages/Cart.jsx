@@ -1,27 +1,30 @@
 import React from 'react';
 import CartItem from "../components/CartItem";
 import {AppContext} from "../App";
-import {useNavigate, } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const {selectedProduct,  sum, objectCurrency} = React.useContext(AppContext)
-  let tax = (sum / 100 * 21).toFixed(2)
-  let total = (Number(sum) + Number(tax)).toFixed(2)
+  const { objectCurrency, cart, counter,price } = React.useContext(AppContext)
+  let tax = (price  / 100 * 21).toFixed(2)
+  let total = ((Number(price) * counter) + Number(tax)).toFixed(2)
+
+
+
   let navigate = useNavigate()
 
 
- React.useEffect(()=>{
-   if (selectedProduct.length === 0) {
+ React.useEffect(()=> {
+   if (cart.length === 0) {
      return navigate("/", { replace: true })
    }
- },[selectedProduct,navigate])
+ },[cart,navigate])
 
   return (
     <div className="cart">
       <h1>Cart</h1>
       <div className="cart-items">
           {
-            selectedProduct.length > 0 && [...new Set(selectedProduct)].map((product) =>
+            cart.length > 0 && cart.map((product) =>
             <CartItem
               key={product.id}
               {...product}/>
@@ -33,7 +36,7 @@ const Cart = () => {
          <h4 className='total__order-bill-tax'>Tax 21%:
            <b className='total__order-bill-price'>{objectCurrency} {tax}</b></h4>
          <h4 className='total__order-bill-quantity'>Quantity:
-           <b className='total__order-bill-price'>{selectedProduct.length}</b></h4>
+           <b className='total__order-bill-price'>{cart.length -1 + counter }</b></h4>
          <h4 className='total__order-bill-total'>Total:
            <b className='total__order-bill-price'>{objectCurrency} {total}</b></h4>
        </div>

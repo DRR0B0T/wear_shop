@@ -1,32 +1,50 @@
 import React from 'react';
 import {AppContext} from "../App";
 
-const Input = ({id,inStock}) => {
-  let {selectedProduct,setSelectedProduct} = React.useContext(AppContext)
-  const itemLength = (id) => {
-    return selectedProduct.filter(item=> item.id === id).length
-  }
+const Input = ({id, counter}) => {
+  let {setCart} = React.useContext(AppContext)
 
   const handleClickPlus = () => {
-    const select = selectedProduct.find(item=>item.id === id)
-    if(inStock)setSelectedProduct(prev => [...prev,select])
+    setCart((cart) => {
+      return cart.map((product) => {
+        if (product.id === id) {
+          return {
+            ...product,
+            counter: product.counter + 1,
+          }
+        }
+        return product
+      })
+    })
   }
 
-  console.log(selectedProduct)
+
   const handleClickMinus = () => {
-    const index = selectedProduct.indexOf(selectedProduct.find(item => item.id === id))
-    const lastIndex = selectedProduct.filter(item=>item.id===id).slice(0, selectedProduct.length - 1).length - 1
-    const filtered = selectedProduct.filter(item=>item.id===id).slice(0,-1)
-    const leftArr = selectedProduct.slice(0, index)
-    const rightArr = selectedProduct.sort((a,b)=>a-b).slice(lastIndex, selectedProduct.length - 1)
-    const newArr = selectedProduct.filter(item=>item.id!==id)
-    // console.log( ...selectedProduct.splice(index, 1 , filtered))
+    setCart((cart) => {
+      return cart.map((product) => {
+        if (product.id === id) {
+          return {
+            ...product,
+            counter: product.counter - 1 > 1 ? --product.counter : 1,
+          }
+        }
+        return product
+      })
+    })
+  }
 
-      // [...prev.filter(item => item.id !== id), ...prev.filter(item=> item.id === id).slice(0,-1)]
-    setSelectedProduct( prev => prev.filter(item=> item.id === id).slice(0,-1)) //Todo: need to found the answer, how delete item is right
-
-
-    if(selectedProduct.length < 1) setSelectedProduct(prev=> prev.filter(item=>item.id!== id))
+  const changeValue = (id,value) => {
+    setCart((cart)=> {
+      return cart.map(product=> {
+        if(product.id === id) {
+          return {
+            ...product,
+            counter: value,
+          }
+        }
+        return  product
+      })
+    })
   }
 
 
@@ -43,8 +61,9 @@ const Input = ({id,inStock}) => {
         </svg>
       </button>
       <input
-        onChange={e=>e.target.value}
-        value={itemLength(id)}/>
+        onChange={(e)=>changeValue(id, +e.target.value)}
+        value={counter}
+      />
       <button
         onClick={handleClickMinus}
       >

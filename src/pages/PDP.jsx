@@ -34,7 +34,7 @@ const GET_PRODUCT = gql `
 
 
 const PDP = () => {
-  const {currency,setSelectedProduct, price, setPrice,setArray} = React.useContext(AppContext)
+  const {currency, setCart, price, setPrice,cart} = React.useContext(AppContext)
   const [img, setImg] = React.useState('')
 
   const [colors,setColors] = React.useState([])
@@ -71,24 +71,26 @@ const PDP = () => {
     if (capacityItem !== undefined) setCapacity(capacityItem.items)
 
   },[data, currency, setPrice])
-
-  const object = {
-    id: id,
-    name: data?.product.name,
-    image: data?.product.gallery,
-    brand: data?.product.brand,
-    inStock: data?.product.inStock,
-    color: selectedColor,
-    size: selectedSize,
-    capacity: selectedCapacity,
-    currency,
-    price
-  }
+  console.log(cart)
 
   const addProductToCart = () => {
-     if(object.color || object.size || object.capacity) {
-       setSelectedProduct(prev => [...prev, object])
-       navigate("/cart", { replace: true })
+    const object = {
+      id,
+      name: data?.product.name,
+      image: data?.product.gallery,
+      brand: data?.product.brand,
+      inStock: data?.product.inStock,
+      counter: 1,
+      color: selectedColor,
+      size: selectedSize,
+      capacity: selectedCapacity,
+      currency,
+      price,
+    }
+    if(object.color || object.size || object.capacity) {
+      const oldObj = cart.find(item=>item.id === object.id)
+      if(JSON.stringify(oldObj) !== JSON.stringify(object))setCart(cart => [...cart, object])
+      navigate("/cart", { replace: true })
      }
   }
 

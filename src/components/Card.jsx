@@ -5,8 +5,7 @@ import {AppContext} from "../App";
 
 
 const Card = ({id, inStock, name, gallery, prices}) => {
-  const [itemInCart] = React.useState(false)
-  const {currency,selectedProduct} = React.useContext(AppContext)
+  const {currency,cart} = React.useContext(AppContext)
   const newPrice = prices.find(price => price.currency.symbol === currency).amount
 
 
@@ -18,7 +17,7 @@ const Card = ({id, inStock, name, gallery, prices}) => {
           <img className='card-img' src={gallery[0]} alt={'productImage'}/>
           {!inStock && <h3 className='card__out'>OUT OF STOCK</h3>}
         </div>
-        {selectedProduct.some(item=> item.id === id) && <ShoppingIcon/>}
+        {cart.some(item=> item.id === id) && <ShoppingIcon/>}
         <h3 className="card__name">
           {name}
         </h3>
