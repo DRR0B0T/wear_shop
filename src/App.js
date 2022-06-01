@@ -22,8 +22,11 @@ function App() {
   const [objectCurrency, setObjectCurrency] = React.useState('')
   const [visible, setVisible] = React.useState(false)
   const [price, setPrice] = React.useState(0)
-  const [counter,setCounter] = React.useState(0)
-
+  const [total, setTotal] = React.useState({
+    tax: 0,
+    count: 1,
+    price: 0,
+  })
 
   React.useEffect(()=>{
     if(!loading) {
@@ -51,7 +54,8 @@ function App() {
       price,
       setPrice,
       setObjectCurrency,
-      objectCurrency,counter,setCounter,
+      objectCurrency,
+      total, setTotal
     }}>
       <div className="App">
         <Routes>

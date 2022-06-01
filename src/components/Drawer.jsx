@@ -5,7 +5,8 @@ import DrawerItem from "./DrawerItem";
 import {AppContext} from "../App";
 
 const Drawer = ({cartOpened, setCartOpened}) => {
-  const { visible,cart,  objectCurrency} = React.useContext(AppContext)
+  const { visible,cart,  objectCurrency, total} = React.useContext(AppContext)
+  const {count,price} = total
 
 
   return (
@@ -19,12 +20,12 @@ const Drawer = ({cartOpened, setCartOpened}) => {
             <div className="drawer-container">
               <div className="drawer__title">
                 <h3 >
-                  <b>My bag,</b> <span>{cart.length} items</span>
+                  <b>My bag,</b> <span>{count} items</span>
                 </h3>
               </div>
               <div className="drawer__items">
                 {
-                 cart.length > 0 && cart.map((product, i)=>
+                 cart.length > 0 && cart.map((product)=>
                     <DrawerItem
                       key={product.id}
                       {...product}
@@ -34,7 +35,7 @@ const Drawer = ({cartOpened, setCartOpened}) => {
                 }
               </div>
               <div className="drawer__total">
-                <span>Total:</span> <span>{objectCurrency}{cart.length}</span>
+                <span>Total:</span> <span>{objectCurrency}{price.toFixed(2)}</span>
               </div>
               <div className="drawer__footer">
                 <Link

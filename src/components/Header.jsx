@@ -7,8 +7,9 @@ import {AppContext} from "../App";
 
 
 const Header = ({data, categoryName, setCategoryName}) => {
-  const {cart} = React.useContext(AppContext)
+  const {cart, total} = React.useContext(AppContext)
   const [cartOpened, setCartOpened] = React.useState(false);
+  const {count} = total
 
   return (
     <>
@@ -62,7 +63,7 @@ const Header = ({data, categoryName, setCategoryName}) => {
 
               {
                 cart.length !== 0 && <div className='purchase'>
-                  <span>{cart.length}</span>
+                  <span>{count}</span>
                 </div>
               }
 

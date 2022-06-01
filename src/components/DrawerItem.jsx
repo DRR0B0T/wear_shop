@@ -2,12 +2,12 @@ import React from 'react';
 import img from "../assets/img/image4.png";
 import Input from "./Input";
 
-const DrawerItem = ({id,name,image,color,size,currency,price, capacity,counter}) => {
+const DrawerItem = ({id,name,image,color,size,currency,totalCount, capacity,counter}) => {
   return (
      <div className="drawer__items__item">
           <div className="drawer__items__item-price">
             <h3>{name}</h3>
-            <span>{currency} {price}</span>
+            <span>{currency} {totalCount}</span>
             {
               size || capacity ? <div className='drawer__items__item-size'>
                 <h3>{size ? 'Size:' : 'Capacity:'}</h3>
