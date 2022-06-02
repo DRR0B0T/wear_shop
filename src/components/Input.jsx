@@ -2,13 +2,12 @@ import React from 'react';
 import {AppContext} from "../App";
 
 const Input = ({id, counter}) => {
-  let {setCart, setTotalCount} = React.useContext(AppContext)
+  let {setCart} = React.useContext(AppContext)
 
   const handleClickPlus = () => {
     setCart((cart) => {
       return cart.map((product) => {
         if (product.id === id) {
-
           return {
             ...product,
             counter: product.counter + 1,
@@ -25,7 +24,6 @@ const Input = ({id, counter}) => {
     setCart((cart) => {
       return cart.map((product) => {
         if (product.id === id) {
-
           return {
             ...product,
             counter: product.counter - 1 > 1 ? product.counter - 1 : 1,

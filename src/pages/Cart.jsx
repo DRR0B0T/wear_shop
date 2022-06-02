@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 
 const Cart = () => {
   const { objectCurrency, cart,total,setTotal } = React.useContext(AppContext)
-  const {tax, count, price} = total
+  const {tax, counter, price} = total
   let navigate = useNavigate()
 
 
@@ -14,7 +14,7 @@ const Cart = () => {
       tax: cart.reduce((prev, current)=> {
         return prev + parseFloat(current.totalCount) / 100 * 21
       }, 0),
-      count: cart.reduce((prev,current)=>{
+      counter: cart.reduce((prev,current)=>{
         return prev + current.counter
       }, 0),
       price: cart.reduce((prev,current)=>{
@@ -24,7 +24,7 @@ const Cart = () => {
    if (cart.length === 0) {
      return navigate("/", { replace: true })
    }
- },[cart,navigate])
+ },[cart,navigate,setTotal])
 
 
 
@@ -45,7 +45,7 @@ const Cart = () => {
          <h4 className='total__order-bill-tax'>Tax 21%:
            <b className='total__order-bill-price'>{objectCurrency} {tax.toFixed(2)}</b></h4>
          <h4 className='total__order-bill-quantity'>Quantity:
-           <b className='total__order-bill-price'>{count}</b></h4>
+           <b className='total__order-bill-price'>{counter}</b></h4>
          <h4 className='total__order-bill-total'>Total:
            <b className='total__order-bill-price'>{objectCurrency} {(price + tax).toFixed(2)}</b></h4>
        </div>

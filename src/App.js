@@ -24,9 +24,10 @@ function App() {
   const [price, setPrice] = React.useState(0)
   const [total, setTotal] = React.useState({
     tax: 0,
-    count: 1,
+    counter: 0,
     price: 0,
   })
+
 
   React.useEffect(()=>{
     if(!loading) {
@@ -36,6 +37,17 @@ function App() {
         .flat()
         .filter(item=> item.currency.symbol === currency))
     }
+    setTotal({
+      tax: cart.reduce((prev, current)=> {
+        return prev + parseFloat(current.totalCount) / 100 * 21
+      }, 0),
+      counter: cart.reduce((prev,current)=>{
+        return prev + current.counter
+      }, 0),
+      price: cart.reduce((prev,current)=>{
+        return prev + parseFloat(current.totalCount)
+      }, 0)
+    })
   },[categoryName, data, loading, currency,cart])
 
 

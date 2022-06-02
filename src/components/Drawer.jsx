@@ -6,8 +6,7 @@ import {AppContext} from "../App";
 
 const Drawer = ({cartOpened, setCartOpened}) => {
   const { visible,cart,  objectCurrency, total} = React.useContext(AppContext)
-  const {count,price} = total
-
+  const {counter,price} = total
 
   return (
     <>
@@ -20,7 +19,7 @@ const Drawer = ({cartOpened, setCartOpened}) => {
             <div className="drawer-container">
               <div className="drawer__title">
                 <h3 >
-                  <b>My bag,</b> <span>{count} items</span>
+                  <b>My bag,</b> <span>{counter} items</span>
                 </h3>
               </div>
               <div className="drawer__items">

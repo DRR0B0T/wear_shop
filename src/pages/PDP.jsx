@@ -1,8 +1,11 @@
 import React from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import {gql, useQuery} from "@apollo/client";
 import {AppContext} from "../App";
 import Spinner from "../components/Spinner";
+
+import nextId from "react-id-generator"
+
 
 const GET_PRODUCT = gql `
     query Product($id: String!){
@@ -34,7 +37,7 @@ const GET_PRODUCT = gql `
 
 
 const PDP = () => {
-  const {currency, setCart, price, setPrice,cart,setTotal} = React.useContext(AppContext)
+  const {currency, setCart, price, setPrice,cart,} = React.useContext(AppContext)
   const [img, setImg] = React.useState('')
 
   const [colors,setColors] = React.useState([])
@@ -45,7 +48,7 @@ const PDP = () => {
   const [selectedSize, setSelectedSize] = React.useState('')
   const [selectedCapacity, setSelectedCapacity] = React.useState('')
 
-  let navigate = useNavigate()
+
   let {id} = useParams()
 
 
@@ -61,6 +64,7 @@ const PDP = () => {
     const capacityItem = data?.product?.attributes.find(item => item.id === 'Capacity')
     const productPrice = data?.product?.prices.find(item=> item.currency.symbol === currency).amount
 
+
     if (data) {
       setImg(data?.product?.gallery[0])
     }
@@ -73,8 +77,9 @@ const PDP = () => {
   },[data, currency, setPrice])
 
   const addProductToCart = () => {
+   const htmlId = nextId()
     const object = {
-      id,
+      id: htmlId,
       name: data?.product.name,
       image: data?.product.gallery,
       brand: data?.product.brand,
@@ -87,13 +92,36 @@ const PDP = () => {
       currency,
       price,
     }
-    if(object.color || object.size || object.capacity) {
-      const oldObj = cart.find(item=>item.id === object.id)
-      if(JSON.stringify(oldObj) !== JSON.stringify(object)) {
-        setCart(cart => [...cart, object])
 
+    const objSize = cart.filter(item=>item.size === object.size).find(item=>item.size === object.size)
+    const objColor = cart.filter(item=>item.color === object.color).find(item => item.color === object.color)
+    const objCapacity = cart.filter(item=>item.capacity === object.capacity).find(item=>item.capacity === object.capacity)
+    const objId = cart.find(item=>item.id === object.id)
+    if(object.color || object.size || object.capacity) {
+      function isEqual(object1, object2) {
+        if(object1 === undefined) return false
+        const props1 = Object.getOwnPropertyNames(object1).shift()
+        const props2 = Object.getOwnPropertyNames(object2).shift()
+
+        if (JSON.stringify(object1) === JSON.stringify(object2)) return false
+
+        if (props1.length !== props2.length) {
+          return false;
+        }
+
+        for (let i = 0; i < props1.length; i += 1) {
+          const prop = props1[i];
+          const bothAreObjects = typeof(object1[prop]) === 'object' && typeof(object2[prop]) === 'object';
+
+          if ((!bothAreObjects && (object1[prop] !== object2[prop]))
+            || (bothAreObjects && !isEqual(object1[prop], object2[prop]))) {
+            return false;
+          }
+        }
+
+        return true;
       }
-      navigate("/cart", { replace: true })
+      if(!(isEqual(objSize, object) && isEqual(objColor, object) && isEqual(objCapacity, object)) && objId !== object.id) setCart(cart => [...cart, object])
      }
   }
 

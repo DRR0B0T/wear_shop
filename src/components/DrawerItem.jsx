@@ -1,5 +1,4 @@
 import React from 'react';
-import img from "../assets/img/image4.png";
 import Input from "./Input";
 
 const DrawerItem = ({id,name,image,color,size,currency,totalCount, capacity,counter}) => {

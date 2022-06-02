@@ -3,10 +3,10 @@ import Input from "./Input";
 import {AppContext} from "../App";
 import cross from '../assets/img/cross.svg'
 
-const CartItem = ({id,name,brand,image,color,size,capacity,currency,totalCount, inStock, counter}) => {
+const CartItem = ({id,name,brand,image,color,size,capacity,currency,totalCount,  counter}) => {
   const {setObjectCurrency, setCart,  } = React.useContext(AppContext)
   let [cartImage, setCartImage] = React.useState(0)
-
+  console.log( size)
 
 
   React.useEffect(()=>{
@@ -58,18 +58,13 @@ const CartItem = ({id,name,brand,image,color,size,capacity,currency,totalCount, 
              <button
                style={{background: `${color}`}}
                className='cart-items__item-colors-btn'></button>
-           </div> :null
+           </div> : null
          }
        </div>
        <div className="cart-items__item-counter">
          <Input
            counter={counter}
-           inStock={inStock}
-           name={name}
            id={id}
-           color={color}
-           size={size}
-           capacity={capacity}
          />
        </div>
        <div className="cart-items__item-img">

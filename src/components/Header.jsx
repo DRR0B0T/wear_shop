@@ -9,7 +9,8 @@ import {AppContext} from "../App";
 const Header = ({data, categoryName, setCategoryName}) => {
   const {cart, total} = React.useContext(AppContext)
   const [cartOpened, setCartOpened] = React.useState(false);
-  const {count} = total
+  const {counter} = total
+
 
   return (
     <>
@@ -60,13 +61,10 @@ const Header = ({data, categoryName, setCategoryName}) => {
                   d="M15.6875 14.9814C14.4875 14.9814 13.498 15.9277 13.498 17.0752C13.498 18.2226 14.4876 19.1689 15.6875 19.1689C16.8875 19.1689 17.877 18.2226 17.877 17.0752C17.8565 15.9284 16.8875 14.9814 15.6875 14.9814ZM15.6875 17.9011C15.2031 17.9011 14.8239 17.5385 14.8239 17.0752C14.8239 16.612 15.2031 16.2493 15.6875 16.2493C16.172 16.2493 16.5512 16.612 16.5512 17.0752C16.5512 17.5188 16.1506 17.9011 15.6875 17.9011Z"
                   fill="#43464E"/>
               </svg>
-
               {
                 cart.length !== 0 && <div className='purchase'>
-                  <span>{count}</span>
-                </div>
+                  <span>{counter}</span></div>
               }
-
             </div>
           </div>
         </div>
