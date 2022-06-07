@@ -3,7 +3,7 @@ import {Route, Routes} from 'react-router-dom'
 
 import './scss/App.scss';
 import Layout from "./components/Layout";
-import Error from "./components/Error";
+import Error from "./pages/Error";
 import PDP from "./pages/PDP";
 import Category from "./pages/Category";
 import Cart from "./pages/Cart";

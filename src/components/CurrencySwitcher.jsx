@@ -18,15 +18,19 @@ const CurrencySwitcher = () => {
 
   const sortRef = React.useRef();
 
-  const handleOutsideClick = (event) => {
-    const path = event.path || (event.composedPath && event.composedPath());
-    if (!path.includes(sortRef.current)) {
-      setVisible(false);
-    }
-  };
+
 
   React.useEffect(() => {
-    document.body.addEventListener('click', handleOutsideClick);
+    const handleOutsideClick = (event) => {
+      if (!event.path.includes(sortRef.current)) {
+        setVisible(false);
+      }
+    }
+    document.body.addEventListener('click', handleOutsideClick)
+
+    return () => {
+      document.body.removeEventListener('click', handleOutsideClick)
+    }
   }, []);
 
   if (loading) return null

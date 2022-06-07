@@ -42,7 +42,7 @@ const Input = ({id, counter}) => {
           return {
             ...product,
             counter: value,
-            totalCount: value * product.price
+            totalCount: (value * product.price).toFixed(2)
           }
         }
         return  product
