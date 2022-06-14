@@ -39,7 +39,6 @@ const Input = ({ id, counter }) => {
     setCart((cart) => {
       return cart.map(product => {
         if (product.id === id) {
-          if (product.counter === 1)setCart(cart => cart.filter(product => product.id !== id))
           return {
             ...product,
             counter: value,

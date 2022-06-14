@@ -40,11 +40,11 @@ const Cart = () => {
       <div className='total__order'>
        <div className='total__order-bill'>
          <h4 className='total__order-bill-tax'>Tax 21%:
-           <b className='total__order-bill-price'>{objectCurrency} {Number(tax.toFixed(2))}</b></h4>
+           <b className='total__order-bill-price'>{objectCurrency} {Math.trunc(tax * 100) / 100}</b></h4>
          <h4 className='total__order-bill-quantity'>Quantity:
            <b className='total__order-bill-price'>{counter}</b></h4>
          <h4 className='total__order-bill-total'>Total:
-           <b className='total__order-bill-price'>{objectCurrency} {Number((price + tax).toFixed(2))}</b></h4>
+           <b className='total__order-bill-price'>{objectCurrency} {Math.trunc((price + tax) * 100) / 100}</b></h4>
        </div>
         <div className='total__order-button'>
           <button className='total__order-button-btn'>
