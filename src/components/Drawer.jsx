@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import {Link} from "react-router-dom";
-import DrawerItem from "./DrawerItem";
-import {AppContext} from "../App";
+import { Link } from 'react-router-dom'
+import DrawerItem from './DrawerItem'
+import { AppContext } from '../App'
 
-const Drawer = ({cartOpened, setCartOpened}) => {
-  const { visible,cart,  objectCurrency, total} = React.useContext(AppContext)
-  const {counter,price} = total
+const Drawer = ({ cartOpened, setCartOpened }) => {
+  const { visible, cart, objectCurrency, total } = React.useContext(AppContext)
+  const { counter, price } = total
 
   return (
     <>
@@ -24,13 +24,13 @@ const Drawer = ({cartOpened, setCartOpened}) => {
               </div>
               <div className="drawer__items">
                 {
-                 cart.length > 0 && cart.map((product)=>
+                 cart.length > 0 && cart.map((product) =>
                     <DrawerItem
                       key={product.id}
                       {...product}
                       setCartOpened={setCartOpened}
                     />
-                  )
+                 )
                 }
               </div>
               <div className="drawer__total">
@@ -38,7 +38,7 @@ const Drawer = ({cartOpened, setCartOpened}) => {
               </div>
               <div className="drawer__footer">
                 <Link
-                  onClick={()=>setCartOpened(false)}
+                  onClick={() => setCartOpened(false)}
                   to='/cart'>
                   <button className='drawer__footer-button'>
                     View bag
@@ -53,7 +53,7 @@ const Drawer = ({cartOpened, setCartOpened}) => {
         </div>
       }
     </>
-  );
-};
+  )
+}
 
-export default Drawer;
+export default Drawer

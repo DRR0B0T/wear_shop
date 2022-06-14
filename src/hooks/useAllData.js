@@ -1,6 +1,7 @@
-import {gql, useQuery} from '@apollo/client'
+import { gql } from '@apollo/client'
 
-const GET_ALL_DATA = gql `
+// noinspection GraphQLUnresolvedReference
+export const GET_ALL_DATA = gql`
     query  {
         categories  {
             name
@@ -11,6 +12,7 @@ const GET_ALL_DATA = gql `
                 gallery
                 description
                 category
+                brand
                 attributes {
                     id
                     name
@@ -27,19 +29,54 @@ const GET_ALL_DATA = gql `
                         label symbol
                     }
                 }
-                brand
             }
         }
     }
 `
-
-export const useAllData = () => {
-  const {data, loading, error} = useQuery(GET_ALL_DATA)
-
-
-  return {
-    data,
-    loading,
-    error
-  }
-}
+// noinspection GraphQLUnresolvedReference
+export const GET_ALL_CURRENCY = gql`
+    query {
+        currencies {
+            label, symbol
+        }
+    }
+`
+// noinspection GraphQLUnresolvedReference
+export const GET_PRODUCT = gql`
+    query Product($id: String!){
+        product (id: $id) {
+            id
+            name
+            brand
+            gallery
+            description
+            inStock
+            prices{
+                amount
+                currency {
+                    label
+                    symbol
+                }
+            }
+            attributes {
+                id
+                name
+                items {
+                    id
+                    value
+                }
+            }
+        }
+    }
+`
+// noinspection GraphQLUnresolvedReference
+export const GET_CATEGORY = gql`
+    query Category($input: CategoryInput){
+        category(input: $input) {
+            name
+            products {
+                id
+            }
+        }
+    }
+`

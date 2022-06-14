@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const ShoppingIcon = () => {
   return (
@@ -19,7 +19,7 @@ const ShoppingIcon = () => {
         </svg>
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default ShoppingIcon;
+export default ShoppingIcon

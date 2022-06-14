@@ -1,14 +1,15 @@
-import React from 'react';
-import Input from "./Input";
+import React from 'react'
+import Input from './Input'
 
-const DrawerItem = ({id,name,image,color,size,currency,totalCount, capacity,counter}) => {
+const DrawerItem = ({ id, name, image, color, size, currency, totalCount, capacity, counter }) => {
   return (
      <div className="drawer__items__item">
           <div className="drawer__items__item-price">
             <h3>{name}</h3>
             <span>{currency} {totalCount}</span>
             {
-              size || capacity ? <div className='drawer__items__item-size'>
+              size || capacity
+                ? <div className='drawer__items__item-size'>
                 <h3>{size ? 'Size:' : 'Capacity:'}</h3>
                 <div>
                   <button
@@ -16,20 +17,22 @@ const DrawerItem = ({id,name,image,color,size,currency,totalCount, capacity,coun
                     {size || capacity}
                   </button>
                 </div>
-              </div> : null
+              </div>
+                : null
             }
 
             {
-              color ?
-                <div className='drawer__items__item-color'>
+              color
+                ? <div className='drawer__items__item-color'>
                   <h3>Color:</h3>
                   <div>
                     <button
-                      style={{background: `${color}`}}
+                      style={{ background: `${color}` }}
                       className={'drawer__items__item-color-btn'}>
                     </button>
                   </div>
-                </div> : null
+                </div>
+                : null
             }
           </div>
           <div className="drawer__items__item-counter">
@@ -39,11 +42,11 @@ const DrawerItem = ({id,name,image,color,size,currency,totalCount, capacity,coun
             />
           </div>
           <div className="drawer__items__item-img">
-            <img  src={image[0]} alt="product"/>
+            <img src={image[0]} alt="product"/>
           </div>
         </div>
 
-  );
-};
+  )
+}
 
-export default DrawerItem;
+export default DrawerItem

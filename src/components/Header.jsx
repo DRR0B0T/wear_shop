@@ -1,16 +1,14 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-import logo from "../assets/img/logo.png";
-import CurrencySwitcher from "./CurrencySwitcher";
-import Drawer from "./Drawer";
-import {AppContext} from "../App";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import logo from '../assets/img/logo.png'
+import CurrencySwitcher from './CurrencySwitcher'
+import Drawer from './Drawer'
+import { AppContext } from '../App'
 
-
-const Header = ({data, categoryName, setCategoryName}) => {
-  const {cart, total} = React.useContext(AppContext)
-  const [cartOpened, setCartOpened] = React.useState(false);
-  const {counter} = total
-
+const Header = ({ data, categoryName, setCategoryName }) => {
+  const { cart, total } = React.useContext(AppContext)
+  const [cartOpened, setCartOpened] = React.useState(false)
+  const { counter } = total
 
   return (
     <>
@@ -19,14 +17,14 @@ const Header = ({data, categoryName, setCategoryName}) => {
             <div className="categories">
 
               {
-                data.categories.map(category=>
+                data.categories.map(category =>
                   <Link
                     key={category.name}
                     className={categoryName === category.name ? 'categories__name active' : 'categories__name'}
                     to='/'>
                   <h3
                     className={categoryName === category.name ? 'categories__name active' : 'categories__name'}
-                    onClick={()=>setCategoryName(category.name)}
+                    onClick={() => setCategoryName(category.name)}
                   >
                       {category.name}
                     </h3>
@@ -74,7 +72,7 @@ const Header = ({data, categoryName, setCategoryName}) => {
         cartOpened={cartOpened}
       />
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

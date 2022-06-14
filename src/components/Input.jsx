@@ -1,8 +1,8 @@
-import React from 'react';
-import {AppContext} from "../App";
+import React from 'react'
+import { AppContext } from '../App'
 
-const Input = ({id, counter}) => {
-  let {setCart} = React.useContext(AppContext)
+const Input = ({ id, counter }) => {
+  const { setCart } = React.useContext(AppContext)
 
   const handleClickPlus = () => {
     setCart((cart) => {
@@ -11,7 +11,7 @@ const Input = ({id, counter}) => {
           return {
             ...product,
             counter: product.counter + 1,
-            totalCount: ((product.counter + 1)  * product.price).toFixed(2)
+            totalCount: ((product.counter + 1) * product.price).toFixed(2)
           }
         }
         return product
@@ -19,11 +19,11 @@ const Input = ({id, counter}) => {
     })
   }
 
-
   const handleClickMinus = () => {
     setCart((cart) => {
       return cart.map((product) => {
         if (product.id === id) {
+          if (product.counter === 1)setCart(cart => cart.filter(product => product.id !== id))
           return {
             ...product,
             counter: product.counter - 1 > 1 ? product.counter - 1 : 1,
@@ -35,21 +35,21 @@ const Input = ({id, counter}) => {
     })
   }
 
-  const changeValue = (id,value) => {
-    setCart((cart)=> {
-      return cart.map(product=> {
-        if(product.id === id) {
+  const changeValue = (id, value) => {
+    setCart((cart) => {
+      return cart.map(product => {
+        if (product.id === id) {
+          if (product.counter === 1)setCart(cart => cart.filter(product => product.id !== id))
           return {
             ...product,
             counter: value,
             totalCount: (value * product.price).toFixed(2)
           }
         }
-        return  product
+        return product
       })
     })
   }
-
 
   return (
     <>
@@ -64,7 +64,7 @@ const Input = ({id, counter}) => {
         </svg>
       </button>
       <input
-        onChange={(e)=>changeValue(id, +e.target.value)}
+        onChange={(e) => changeValue(id, +e.target.value)}
         value={counter}
       />
       <button
@@ -77,7 +77,7 @@ const Input = ({id, counter}) => {
         </svg>
       </button>
     </>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

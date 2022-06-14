@@ -1,9 +1,8 @@
-import React from 'react';
-import {Outlet} from 'react-router-dom'
-import Header from "./Header";
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import Header from './Header'
 
-const Layout = ({data, categoryName,setCategoryName}) => {
-
+const Layout = ({ data, categoryName, setCategoryName }) => {
   return (
     <>
       <Header
@@ -13,7 +12,7 @@ const Layout = ({data, categoryName,setCategoryName}) => {
       />
       <Outlet />
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
