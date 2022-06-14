@@ -15,14 +15,16 @@ export const AppContext = React.createContext({})
 
 function App () {
   const { data, loading, error } = useQuery(GET_ALL_DATA)
+
   const [categoryName, setCategoryName] = React.useState('all')
-  const [newData, setNewData] = React.useState([])
+
   const [amount, setAmount] = React.useState([])
   const [cart, setCart] = React.useState([])
   const [currency, setCurrency] = React.useState('$')
   const [objectCurrency, setObjectCurrency] = React.useState('')
   const [visible, setVisible] = React.useState(false)
   const [price, setPrice] = React.useState(0)
+
   const [total, setTotal] = React.useState({
     tax: 0,
     counter: 0,
@@ -31,7 +33,6 @@ function App () {
 
   React.useEffect(() => {
     if (!loading) {
-      setNewData(data.categories.find(item => item.name.includes(categoryName)).products)
       setAmount(data.categories[0].products
         .map(item => item.prices)
         .flat()
@@ -78,11 +79,12 @@ function App () {
               setCategoryName={setCategoryName}
           />
           }>
-            <Route index element={<Category
+            <Route index element={
+              <Category
               amount={amount}
-              newData={newData}
               categoryName={categoryName}
-            />}/>
+              />
+            }/>
             <Route path='pdp/:id/:name' element={<PDP/>}/>
             <Route path='cart' element={<Cart/>}/>
             <Route path='*' element={<Error/>} />

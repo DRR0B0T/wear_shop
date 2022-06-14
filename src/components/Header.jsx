@@ -1,44 +1,43 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import logo from '../assets/img/logo.png'
 import CurrencySwitcher from './CurrencySwitcher'
 import Drawer from './Drawer'
-import { AppContext } from '../App'
+import {AppContext} from '../App'
 
-const Header = ({ data, categoryName, setCategoryName }) => {
-  const { cart, total } = React.useContext(AppContext)
+const Header = ({data, categoryName, setCategoryName}) => {
+  const {cart, total} = React.useContext(AppContext)
   const [cartOpened, setCartOpened] = React.useState(false)
-  const { counter } = total
+  const {counter} = total
 
   return (
     <>
       <header className='header'>
         <div className="container">
-            <div className="categories">
-
-              {
-                data.categories.map(category =>
-                  <Link
-                    key={category.name}
-                    className={categoryName === category.name ? 'categories__name active' : 'categories__name'}
-                    to='/'>
+          <div className="categories">
+            {
+              data.categories.map(category =>
+                <Link
+                  key={category.name}
+                  className={categoryName === category.name ? 'categories__name active' : 'categories__name'}
+                  to='/'>
                   <h3
                     className={categoryName === category.name ? 'categories__name active' : 'categories__name'}
                     onClick={() => setCategoryName(category.name)}
                   >
-                      {category.name}
-                    </h3>
-                  </Link>
-                )
-              }
-            </div>
+                    {category.name}
+                  </h3>
+                </Link>
+              )
+            }
+          </div>
           <Link to='/'>
             <div className="logo">
               <img width="41" src={logo} alt="Logo"/>
             </div>
           </Link>
           <div className="sort__popup">
-              <CurrencySwitcher/>
+            <CurrencySwitcher/>
             <div
               className='header-cart'
               onClick={() => setCartOpened(!cartOpened)}
@@ -60,7 +59,7 @@ const Header = ({ data, categoryName, setCategoryName }) => {
                   fill="#43464E"/>
               </svg>
               {
-                cart.length !== 0 && <div className='purchase'>
+                cart.length > 0 && <div className='purchase'>
                   <span>{counter}</span></div>
               }
             </div>

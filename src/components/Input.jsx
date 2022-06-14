@@ -11,7 +11,7 @@ const Input = ({ id, counter }) => {
           return {
             ...product,
             counter: product.counter + 1,
-            totalCount: ((product.counter + 1) * product.price).toFixed(2)
+            totalCount: Math.trunc(((product.counter + 1) * product.price) * 100) / 100
           }
         }
         return product
@@ -27,7 +27,7 @@ const Input = ({ id, counter }) => {
           return {
             ...product,
             counter: product.counter - 1 > 1 ? product.counter - 1 : 1,
-            totalCount: ((product.counter - 1 > 1 ? product.counter - 1 : 1) * product.price).toFixed(2)
+            totalCount: Math.trunc(((product.counter - 1 > 1 ? product.counter - 1 : 1) * product.price) * 100) / 100
           }
         }
         return product
@@ -42,7 +42,7 @@ const Input = ({ id, counter }) => {
           return {
             ...product,
             counter: value,
-            totalCount: (value * product.price).toFixed(2)
+            totalCount: Math.trunc((value * product.price) * 100) / 100
           }
         }
         return product

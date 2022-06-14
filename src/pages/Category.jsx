@@ -4,27 +4,30 @@ import Loader from '../components/ContentLoader'
 import { useQuery } from '@apollo/client'
 import { GET_CATEGORY } from '../hooks/useAllData'
 
+const Category = ({ categoryName }) => {
+  const [name, setName] = React.useState('All')
 
-const Category = ({ categoryName, newData }) => {
-  const { data } = useQuery(GET_CATEGORY, {
+  const { data, loading, error } = useQuery(GET_CATEGORY, {
     variables: {
       input: {
-        title: 'tech'
+        title: `${categoryName}`
       }
     }
   })
-  console.log(data?.category.name)
+
+  React.useEffect(()=>{
+    if(data) setName(data.category.name[0].toUpperCase() + data.category.name.slice(1))
+  },[data])
+
+  if (error) return `Error ${error.message}`
 
   return (
     <div className="main">
       <div className="container">
-        <h1 className='name'>{categoryName[0].toUpperCase() + categoryName.slice(1)}</h1>
-
+        <h1 className='name'>{name}</h1>
         <div className='cards-block'>
           {
-           newData
-
-             ? newData.map(product =>
+           !loading ? data.category.products.map(product =>
               <Card
                 key={product.id}
                 {...product} />)
