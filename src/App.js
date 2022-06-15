@@ -16,8 +16,7 @@ export const AppContext = React.createContext({})
 function App () {
   const { data, loading, error } = useQuery(GET_ALL_DATA)
 
-  const [categoryName, setCategoryName] = React.useState('all')
-
+  const [categoryName, setCategoryName] = React.useState('')
   const [amount, setAmount] = React.useState([])
   const [cart, setCart] = React.useState([])
   const [currency, setCurrency] = React.useState('$')
