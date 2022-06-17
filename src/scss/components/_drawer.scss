@@ -85,7 +85,7 @@
             font-weight: 400;
             font-size: 14px;
             line-height: 16px;
-            margin-bottom: 3px;
+            margin: 3px 0;
           }
           &.capacity {
             button {
@@ -95,8 +95,14 @@
           }
           &.ports {
             margin: 0;
+            h3 {
+              font-size: 13px;
+            }
           }
           &.touch {
+            h3 {
+              font-size: 13px;
+            }
             margin: 0;
           }
           button {

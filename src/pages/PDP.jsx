@@ -46,7 +46,6 @@ const PDP = () => {
     }
   })
 
-
   React.useEffect(() => {
     const colorItem = data?.product?.attributes.find(item => item.id === 'Color')
     const sizeItem = data?.product?.attributes.find(item => item.id === 'Size')
@@ -61,14 +60,14 @@ const PDP = () => {
     if (touchId !== undefined) setTouchId(touchId.items)
 
     const productPrice = data?.product?.prices.find(item => item.currency.symbol === currency).amount
-
     if (data) {
       setImg(data?.product?.gallery[0])
+      setSelectedCapacity(capacityItem?.items[0].id)
+      setSelectedSize(sizeItem?.items[0].id)
     }
     if (productPrice) setPrice(productPrice)
 
   }, [data, currency, setPrice])
-
   const addProductToCart = () => {
     const htmlId = nextId()
 
@@ -94,19 +93,33 @@ const PDP = () => {
         currency,
         price
       }
-      if (object.selectedColor || object.selectedSize || object.selectedCapacity) {
+
+      if (object.selectedPort
+        || object.selectedTouchId
+        || object.selectedColor
+        || object.selectedSize
+        || object.selectedCapacity ) {
 
         const objSize = cart.find(product => product.selectedSize === object.selectedSize)
         const objColor = cart.find(product => product.selectedColor === object.selectedColor)
         const objCapacity = cart.find(product => product.selectedCapacity === object.selectedCapacity)
+        const objPort = cart.find(product => product.selectedPort === object.selectedPort)
+        const objTouchId = cart.find(product => product.selectedTouchId === object.selectedTouchId)
 
-
-        if (isEqual(objSize, object) && isEqual(objColor, object) && isEqual(objCapacity, object)) {
+        if (isEqual(objSize, object)
+          && isEqual(objColor, object)
+          && isEqual(objCapacity, object)
+          && isEqual(objPort, object)
+          && isEqual(objTouchId, object)
+        ) {
           setCart((cart) => {
             return cart.map((product) => {
               if (object.selectedSize === product.selectedSize
                 && object.selectedCapacity === product.selectedCapacity
-                && object.selectedColor === product.selectedColor) {
+                && object.selectedColor === product.selectedColor
+                && object.selectedPort === product.selectedPort
+                && object.selectedTouchId === product.selectedTouchId
+              ) {
                 return {
                   ...product,
                   counter: product.counter + 1,

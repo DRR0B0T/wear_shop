@@ -25,12 +25,11 @@ function App () {
   const [cartOpened, setCartOpened] = React.useState(false)
   const [price, setPrice] = React.useState(0)
 
-
-  const [selectedColor, setSelectedColor] = React.useState('')
-  const [selectedSize, setSelectedSize] = React.useState('')
-  const [selectedCapacity, setSelectedCapacity] = React.useState('')
-  const [selectedPort, setSelectedPort] = React.useState('')
-  const [selectedTouchId, setSelectedTouchId] = React.useState('')
+  const [selectedColor, setSelectedColor] = React.useState('Black')
+  const [selectedSize, setSelectedSize] = React.useState('Small')
+  const [selectedCapacity, setSelectedCapacity] = React.useState('512G')
+  const [selectedPort, setSelectedPort] = React.useState('No')
+  const [selectedTouchId, setSelectedTouchId] = React.useState('No')
 
 
   const [total, setTotal] = React.useState({

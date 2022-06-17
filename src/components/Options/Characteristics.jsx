@@ -31,9 +31,9 @@ const Characteristics = ({
                 sizes.map(size =>
                   <Button
                     props={size.value}
-                    onClick={() => setSelectedSize(size.value)}
+                    onClick={() => setSelectedSize(size.id)}
                     key={size.id}
-                    className={selectedSize === size.value ? 'active' : ''}/>
+                    className={selectedSize === size.id ? 'active' : ''}/>
                 )
               }
             </div>
@@ -46,9 +46,9 @@ const Characteristics = ({
                 capacity.map(capacity =>
                   <Button
                     props={capacity.value}
-                    onClick={() => setSelectedCapacity(capacity.value)}
+                    onClick={() => setSelectedCapacity(capacity.id)}
                     key={capacity.id}
-                    className={selectedCapacity === capacity.value ? 'active' : ''}/>)
+                    className={selectedCapacity === capacity.id ? 'active' : ''}/>)
               }
             </div>
             {
