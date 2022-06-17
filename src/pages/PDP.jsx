@@ -17,11 +17,15 @@ const PDP = () => {
     setPrice,
     cart,
     selectedColor,
-    setSelectedColor,
     selectedSize,
-    setSelectedSize,
     selectedCapacity,
+    selectedPort,
+    selectedTouchId,
+    setSelectedColor,
+    setSelectedSize,
     setSelectedCapacity,
+    setSelectedPort,
+    setSelectedTouchId
   } = React.useContext(AppContext)
   const [img, setImg] = React.useState('')
 
@@ -29,6 +33,8 @@ const PDP = () => {
   const [colors, setColors] = React.useState([])
   const [sizes, setSizes] = React.useState([])
   const [capacity, setCapacity] = React.useState([])
+  const [ports, setPorts] = React.useState([])
+  const [touchId, setTouchId] = React.useState([])
 
 
   const {id} = useParams()
@@ -39,14 +45,20 @@ const PDP = () => {
       id
     }
   })
+
+
   React.useEffect(() => {
     const colorItem = data?.product?.attributes.find(item => item.id === 'Color')
     const sizeItem = data?.product?.attributes.find(item => item.id === 'Size')
     const capacityItem = data?.product?.attributes.find(item => item.id === 'Capacity')
+    const ports = data?.product?.attributes.find(item => item.id === 'With USB 3 ports')
+    const touchId = data?.product?.attributes.find(item => item.id === 'Touch ID in keyboard')
 
     if (colorItem !== undefined) setColors(colorItem.items)
     if (sizeItem !== undefined) setSizes(sizeItem.items)
     if (capacityItem !== undefined) setCapacity(capacityItem.items)
+    if (ports !== undefined) setPorts(ports.items)
+    if (touchId !== undefined) setTouchId(touchId.items)
 
     const productPrice = data?.product?.prices.find(item => item.currency.symbol === currency).amount
 
@@ -69,12 +81,16 @@ const PDP = () => {
         inStock: data?.product.inStock,
         counter: 1,
         totalCount: price,
-        color: colors,
-        size: sizes,
+        colors,
+        sizes,
         capacity,
+        ports,
+        touchId,
         selectedColor,
         selectedSize,
         selectedCapacity,
+        selectedPort,
+        selectedTouchId,
         currency,
         price
       }
@@ -169,11 +185,21 @@ const PDP = () => {
             capacity={capacity}
             selectedCapacity={selectedCapacity}
             selectedSize={selectedSize}
+            selectedPort={selectedPort}
+            selectedTouchId={selectedTouchId}
+            ports={ports}
+            touchId={touchId}
+            setSelectedPort={setSelectedPort}
+            setSelectedTouchId={setSelectedTouchId}
+            container={'pdp-right-content__sizes'}
+            className={'pdp-right-content__sizes-buttons'}
           />
           <Colors
             setSelectedColor={setSelectedColor}
             selectedColor={selectedColor}
             colors={colors}
+            className={'pdp-right-content__colors-btn'}
+            container={'pdp-right-content__colors'}
           />
           <div className="pdp-right-content__price">
             <h3>Price:</h3>

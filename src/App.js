@@ -29,6 +29,8 @@ function App () {
   const [selectedColor, setSelectedColor] = React.useState('')
   const [selectedSize, setSelectedSize] = React.useState('')
   const [selectedCapacity, setSelectedCapacity] = React.useState('')
+  const [selectedPort, setSelectedPort] = React.useState('')
+  const [selectedTouchId, setSelectedTouchId] = React.useState('')
 
 
   const [total, setTotal] = React.useState({
@@ -83,6 +85,8 @@ function App () {
       setSelectedSize,
       selectedCapacity,
       setSelectedCapacity,
+      selectedPort, setSelectedPort,
+      selectedTouchId, setSelectedTouchId
     }}>
       <div className="App">
         <Routes>

@@ -51,6 +51,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
     &__header{
      h2 {
        font-weight: 600;
@@ -77,10 +78,24 @@
         }
 
         &-buttons {
-          display: flex;
-          margin-top: 8px;
+          margin: 8px 0;
           &.capacity {
-            width: fit-content;
+            margin-top: 7px;
+            h3{
+              margin-bottom: 7px;
+            }
+          }
+          &.ports {
+            margin-top: 7px;
+            h3{
+              margin-bottom: 7px;
+            }
+          }
+          &.touch {
+            margin-top: 7px;
+            h3{
+              margin-bottom: 7px;
+            }
           }
           button {
             width: 63px;
@@ -95,11 +110,6 @@
             transition: all 0.2s ease-in-out;
             font-family: 'Source Sans Pro', sans-serif;
 
-            &.disabled {
-              border: 1px solid $disabled;
-              color: $disabled;
-              pointer-events: none;
-            }
             &.active {
               background: $text;
               color: $background;

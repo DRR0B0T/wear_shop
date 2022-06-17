@@ -1,10 +1,27 @@
 import React from 'react'
 import Input from './Input'
-import Button from "./Button";
 import {AppContext} from "../App";
+import Colors from "./Options/Colors";
+import Characteristics from "./Options/Characteristics";
 
-const DrawerItem = ({id, name, image, color, size, currency, totalCount, capacity, counter, selectedColor, selectedSize, selectedCapacity}) => {
-  const {setSelectedColor, setSelectedSize, setSelectedCapacity, } = React.useContext(AppContext)
+const DrawerItem = ({id,
+                      name,
+                      image,
+                      colors,
+                      sizes,
+                      currency,
+                      totalCount,
+                      capacity,
+                      counter,
+                      selectedColor,
+                      selectedSize,
+                      selectedCapacity,
+                      ports,
+                      touchId,
+                      selectedPort,
+                      selectedTouchId
+                    }) => {
+  const {setSelectedColor, setSelectedSize, setSelectedCapacity,setSelectedPort,setSelectedTouchId } = React.useContext(AppContext)
 
 
   return (
@@ -12,46 +29,29 @@ const DrawerItem = ({id, name, image, color, size, currency, totalCount, capacit
       <div className="drawer__items__item-price">
         <h3>{name}</h3>
         <span>{currency} {totalCount}</span>
-
-        <div className='drawer__items__item-size'>
-          <h3>{size ? 'Size:' : 'Capacity:'}</h3>
-          <div>
-            {
-              size.length > 0 ? (size.map(size =>
-                  <Button
-                    onClick={()=> console.log(size.value)}
-                    key={size.id}
-                    props={size.value}
-                    className={selectedSize === size.value ? 'drawer__items__item-size-btn active' : 'drawer__items__item-size-btn'}
-                  />
-                ))
-                : (capacity.map(capacity => <Button
-                  key={capacity.id}
-                  props={capacity.value}
-                  className={selectedCapacity === capacity.id ? 'drawer__items__item-size-btn capacity active' : 'drawer__items__item-size-btn capacity'}
-                />))
-            }
-          </div>
-        </div>
-
-
-        {
-          color.length > 0
-            ? <div className='drawer__items__item-color'>
-              <h3>Color:</h3>
-              <div>
-                {
-                  color.map(color => <Button
-                    color={color.value}
-                    className={selectedColor === color.id ? 'drawer__items__item-color-btn active' : 'drawer__items__item-color-btn'}
-                    key={color.id}
-                    selectedColor={selectedColor}
-                  />)
-                }
-              </div>
-            </div>
-            : null
-        }
+        <Characteristics
+          setSelectedSize={setSelectedSize}
+          sizes={sizes}
+          setSelectedCapacity={setSelectedCapacity}
+          capacity={capacity}
+          selectedCapacity={selectedCapacity}
+          selectedSize={selectedSize}
+          selectedPort={selectedPort}
+          selectedTouchId={selectedTouchId}
+          ports={ports}
+          touchId={touchId}
+          setSelectedPort={setSelectedPort}
+          setSelectedTouchId={setSelectedTouchId}
+          container={'drawer__items__item-size'}
+          className={'drawer__items__item-size-buttons'}
+        />
+        <Colors
+          setSelectedColor={setSelectedColor}
+          selectedColor={selectedColor}
+          colors={colors}
+          className={'drawer__items__item-color-btn'}
+          container={'drawer__items__item-color'}
+        />
       </div>
       <div className="drawer__items__item-counter">
         <Input

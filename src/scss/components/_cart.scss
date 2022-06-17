@@ -44,7 +44,7 @@
 
 
         &-price {
-          margin-top: 10px;
+          margin-top: 5px;
           display: block;
           font-weight: 700;
           font-size: 24px;
@@ -62,42 +62,53 @@
         }
       }
       &-sizes {
-        margin-top: 10px;
+        margin-top: 5px;
+        h3 {
+          text-transform: uppercase;
+          margin-bottom: 3px;
+        }
 
-        &-btn{
-          margin-top: 10px;
-          width: 63px;
-          height: 45px;
-          border-radius: 0;
-          border: 1px solid $text;
-          margin-right: 8px;
-          text-align: center;
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 18px;
-          font-family: 'Source Sans Pro', sans-serif;
-          background: $background;
-          transition: all 0.3s ease-in-out;
-          cursor: pointer;
+        &-btn {
+          margin: 4px 0;
           &.capacity {
-            width: 65px;
-            height: 45px;
+
           }
-          &:hover {
-            background: $text;
-            color: $background;
+          &.ports {
+
           }
-          &.active {
-            background: $text;
-            color: $background;
+          &.touch {
+
+          }
+          button {
+            width: 62px;
+            height: 42px;
+            border: 1px solid $text;
+            font-weight:700;
+            font-size: 18px;
+            line-height: 18px;
+            background: $background;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-family: 'Source Sans Pro', sans-serif;
+
+            &.active {
+              background: $text;
+              color: $background;
+            }
+            &:hover {
+              background: $text;
+              color: $background;
+            }
           }
         }
       }
       &-colors {
         width: 100%;
         margin-top: 10px;
-        display: flex;
-        flex-direction: column;
+        h3{
+          text-transform: uppercase;
+        }
         &-btn {
           margin-top: 10px;
           width: 32px;
