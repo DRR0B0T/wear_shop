@@ -30,6 +30,12 @@
   background: $background;
   padding: 12px;
 
+  &__options {
+    h3 {
+      text-transform: none;
+    }
+  }
+
   .disabled-btn {
     color: $disabled;
     border: 1px solid $disabled;
@@ -57,9 +63,7 @@
       padding: 0;
       margin-top: 41px;
       &-price {
-
         width: 136px;
-
         h3{
           font-weight: 300;
           width: inherit;
@@ -74,9 +78,14 @@
       }
       &-size {
         margin-top: 10px;
+        h3 {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 16px;
+        }
         &-btn {
             margin-top: 10px;
-            width: 35px;
+            width: 24px;
             height: 24px;
             border-radius: 0;
             border: 1px solid $text;
@@ -87,8 +96,16 @@
             font-family: 'Source Sans Pro', sans-serif;
             background: $background;
             transition: all 0.3s ease-in-out;
-
+            cursor: pointer;
+          &.capacity {
+            width: 35px;
+            height: 24px;
+          }
           &.active {
+            background: $text;
+            color: $background;
+          }
+          &:hover {
             background: $text;
             color: $background;
           }
@@ -108,7 +125,7 @@
           border: 2px solid rgba(0,0,0,.4);
           margin-right: 4px;
           box-sizing: border-box;
-
+          cursor: pointer;
           &.active {
             border: 2px solid #5ECE7B;
             width: 20px;

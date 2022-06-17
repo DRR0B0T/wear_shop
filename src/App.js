@@ -22,7 +22,14 @@ function App () {
   const [currency, setCurrency] = React.useState('$')
   const [objectCurrency, setObjectCurrency] = React.useState('')
   const [visible, setVisible] = React.useState(false)
+  const [cartOpened, setCartOpened] = React.useState(false)
   const [price, setPrice] = React.useState(0)
+
+
+  const [selectedColor, setSelectedColor] = React.useState('')
+  const [selectedSize, setSelectedSize] = React.useState('')
+  const [selectedCapacity, setSelectedCapacity] = React.useState('')
+
 
   const [total, setTotal] = React.useState({
     tax: 0,
@@ -67,7 +74,15 @@ function App () {
       setObjectCurrency,
       objectCurrency,
       total,
-      setTotal
+      setTotal,
+      cartOpened,
+      setCartOpened,
+      selectedColor,
+      setSelectedColor,
+      selectedSize,
+      setSelectedSize,
+      selectedCapacity,
+      setSelectedCapacity,
     }}>
       <div className="App">
         <Routes>

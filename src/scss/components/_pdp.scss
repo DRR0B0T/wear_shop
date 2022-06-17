@@ -72,17 +72,15 @@
         line-height: 18px;
         margin-top: 10px;
          h3 {
-          text-transform: uppercase;
+           text-transform: uppercase;
            font-family: 'Roboto Condensed',sans-serif;
         }
 
         &-buttons {
           display: flex;
-          justify-content: space-between;
           margin-top: 8px;
           &.capacity {
             width: fit-content;
-
           }
           button {
             width: 63px;

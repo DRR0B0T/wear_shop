@@ -27,21 +27,21 @@
       }
 
       &-price {
-
         width: 136px;
         flex:1;
         &-name {
           display: flex;
           flex-direction: column;
+          font-weight: 600;
+          font-size: 30px;
+          line-height: 27px;
           span {
             font-weight: 400;
             font-size: 30px;
+            line-height: 27px;
           }
         }
-        h3{
-          font-weight: 600;
-          font-size: 30px;
-        }
+
 
         &-price {
           margin-top: 10px;
@@ -63,6 +63,7 @@
       }
       &-sizes {
         margin-top: 10px;
+
         &-btn{
           margin-top: 10px;
           width: 63px;
@@ -77,7 +78,19 @@
           font-family: 'Source Sans Pro', sans-serif;
           background: $background;
           transition: all 0.3s ease-in-out;
-
+          cursor: pointer;
+          &.capacity {
+            width: 65px;
+            height: 45px;
+          }
+          &:hover {
+            background: $text;
+            color: $background;
+          }
+          &.active {
+            background: $text;
+            color: $background;
+          }
         }
       }
       &-colors {
@@ -92,11 +105,8 @@
           border: 2px solid rgba(0,0,0,.4);
           cursor: pointer;
           margin-right: 8px;
-
           &.active {
             border: 2px solid #5ECE7B;
-            width: 36px;
-            height: 36px;
           }
         }
       }

@@ -6,32 +6,48 @@ import Spinner from '../components/Spinner'
 
 import nextId from 'react-id-generator'
 import {GET_PRODUCT} from '../hooks/useAllData'
+import Characteristics from "../components/Options/Characteristics";
+import Colors from "../components/Options/Colors";
 
 const PDP = () => {
-  const {currency, setCart, price, setPrice, cart} = React.useContext(AppContext)
+  const {
+    currency,
+    setCart,
+    price,
+    setPrice,
+    cart,
+    selectedColor,
+    setSelectedColor,
+    selectedSize,
+    setSelectedSize,
+    selectedCapacity,
+    setSelectedCapacity,
+  } = React.useContext(AppContext)
   const [img, setImg] = React.useState('')
+
 
   const [colors, setColors] = React.useState([])
   const [sizes, setSizes] = React.useState([])
   const [capacity, setCapacity] = React.useState([])
 
-  const [selectedColor, setSelectedColor] = React.useState('')
-  const [selectedSize, setSelectedSize] = React.useState('')
-  const [selectedCapacity, setSelectedCapacity] = React.useState('')
 
   const {id} = useParams()
+
 
   const {data, loading, error} = useQuery(GET_PRODUCT, {
     variables: {
       id
     }
   })
-
-
   React.useEffect(() => {
     const colorItem = data?.product?.attributes.find(item => item.id === 'Color')
     const sizeItem = data?.product?.attributes.find(item => item.id === 'Size')
     const capacityItem = data?.product?.attributes.find(item => item.id === 'Capacity')
+
+    if (colorItem !== undefined) setColors(colorItem.items)
+    if (sizeItem !== undefined) setSizes(sizeItem.items)
+    if (capacityItem !== undefined) setCapacity(capacityItem.items)
+
     const productPrice = data?.product?.prices.find(item => item.currency.symbol === currency).amount
 
     if (data) {
@@ -39,16 +55,13 @@ const PDP = () => {
     }
     if (productPrice) setPrice(productPrice)
 
-    if (colorItem !== undefined) setColors(colorItem.items)
-    if (sizeItem !== undefined) setSizes(sizeItem.items)
-    if (capacityItem !== undefined) setCapacity(capacityItem.items)
   }, [data, currency, setPrice])
 
   const addProductToCart = () => {
     const htmlId = nextId()
 
     if (data?.product.inStock) {
-     const object = {
+      const object = {
         id: htmlId,
         name: data?.product.name,
         image: data?.product.gallery,
@@ -56,57 +69,65 @@ const PDP = () => {
         inStock: data?.product.inStock,
         counter: 1,
         totalCount: price,
-        color: selectedColor,
-        size: selectedSize,
-        capacity: selectedCapacity,
+        color: colors,
+        size: sizes,
+        capacity,
+        selectedColor,
+        selectedSize,
+        selectedCapacity,
         currency,
         price
       }
-      if (object.color || object.size || object.capacity) {
-        function isEqual(object1, object2) {
-            if (object1 === undefined) return false
-            const props1 = Object.getOwnPropertyNames(object1).shift()
-            const props2 = Object.getOwnPropertyNames(object2).shift()
+      if (object.selectedColor || object.selectedSize || object.selectedCapacity) {
 
-            if (JSON.stringify(object1) === JSON.stringify(object2)) return false
-
-            if (props1.length !== props2.length) {
-              return false
-            }
-
-            for (let i = 0; i < props1.length; i += 1) {
-              const prop = props1[i]
-              const bothAreObjects = typeof (object1[prop]) === 'object' && typeof (object2[prop]) === 'object'
-
-              if ((!bothAreObjects && (object1[prop] !== object2[prop])) ||
-                (bothAreObjects && !isEqual(object1[prop], object2[prop]))) {
-                return false
-              }
-            }
-
-            return true
-          }
-        const objSize = cart.filter(item => item.size === object.size).find(item => item.size === object.size)
-        const objColor = cart.filter(item => item.color === object.color).find(item => item.color === object.color)
-        const objCapacity = cart.filter(item => item.capacity === object.capacity).find(item => item.capacity === object.capacity)
+        const objSize = cart.find(product => product.selectedSize === object.selectedSize)
+        const objColor = cart.find(product => product.selectedColor === object.selectedColor)
+        const objCapacity = cart.find(product => product.selectedCapacity === object.selectedCapacity)
 
 
-          if(isEqual(objSize, object) && isEqual(objColor, object) && isEqual(objCapacity, object)) {
-            setCart((cart) => {
-              return cart.map((product) => {
-              if(product.name===object.name) {
+        if (isEqual(objSize, object) && isEqual(objColor, object) && isEqual(objCapacity, object)) {
+          setCart((cart) => {
+            return cart.map((product) => {
+              if (object.selectedSize === product.selectedSize
+                && object.selectedCapacity === product.selectedCapacity
+                && object.selectedColor === product.selectedColor) {
                 return {
                   ...product,
                   counter: product.counter + 1,
-                  totalCount: Math.trunc(((product.counter + 1) * product.price) * 100) / 100
+                  totalCount: Math.trunc(((product.counter + 1) * product.price) * 100) / 100,
                 }
               }
               return product
-              })
             })
-          } else {
-            setCart(cart=> [...cart, object])
+          })
+        } else {
+          setCart((cart) => [...cart, object])
+        }
+
+
+        function isEqual(object1, object2) {
+          if (object1 === undefined || object2 === undefined) return false
+          const props1 = Object.getOwnPropertyNames(object1).shift()
+          const props2 = Object.getOwnPropertyNames(object2).shift()
+
+          if (JSON.stringify(object1) === JSON.stringify(object2)) return false
+
+          if (props1.length !== props2.length) {
+            return false
           }
+
+          for (let i = 0; i < props1.length; i += 1) {
+            const prop = props1[i]
+            const bothAreObjects = typeof (object1[prop]) === 'object' && typeof (object2[prop]) === 'object'
+
+            if ((!bothAreObjects && (object1[prop] !== object2[prop])) ||
+              (bothAreObjects && !isEqual(object1[prop], object2[prop]))) {
+              return false
+            }
+          }
+
+          return true
+        }
       }
 
     }
@@ -141,54 +162,19 @@ const PDP = () => {
             <h2>{data.product.name}</h2>
             <span>{data.product.brand}</span>
           </div>
-          {
-            sizes.length > 0
-              ? (<div className='pdp-right-content__sizes'>
-                <h3>Size:</h3>
-                <div className='pdp-right-content__sizes-buttons'>
-                  {
-                    sizes.map(size =>
-                      <button
-                        onClick={() => setSelectedSize(size.value)}
-                        key={size.id}
-                        className={selectedSize === size.value ? 'active' : ''}>{size.value}</button>
-                    )
-                  }
-                </div>
-              </div>)
-              : capacity.length > 0 && (<div className='pdp-right-content__sizes'>
-              <h3>Capacity:</h3>
-              <div className='pdp-right-content__sizes-buttons capacity'>
-                {
-                  capacity.map(capacity =>
-                    <button
-                      onClick={() => setSelectedCapacity(capacity.value)}
-                      key={capacity.id}
-                      className={selectedCapacity === capacity.value ? 'active' : ''}>{capacity.value}</button>)
-                }
-              </div>
-            </div>)
-          }
-
-          {
-            colors.length
-              ? (<div className={'pdp-right-content__colors'}>
-                <h3 style={{marginTop: 10}}>Color:</h3>
-                {
-                  colors.map(color =>
-                    <button
-                      onClick={() => setSelectedColor(color.id)}
-                      key={color.id}
-                      style={{background: `${color.value}`}}
-                      className={selectedColor === color.id
-                        ? 'pdp-right-content__colors-btn active'
-                        : 'pdp-right-content__colors-btn'}></button>
-                  )
-                }
-              </div>)
-              : null
-          }
-
+          <Characteristics
+            setSelectedSize={setSelectedSize}
+            sizes={sizes}
+            setSelectedCapacity={setSelectedCapacity}
+            capacity={capacity}
+            selectedCapacity={selectedCapacity}
+            selectedSize={selectedSize}
+          />
+          <Colors
+            setSelectedColor={setSelectedColor}
+            selectedColor={selectedColor}
+            colors={colors}
+          />
           <div className="pdp-right-content__price">
             <h3>Price:</h3>
             <span>{currency}{price}</span>
@@ -199,7 +185,7 @@ const PDP = () => {
             </button>
           </div>
           <div
-            dangerouslySetInnerHTML={{__html: data.product.description}}
+            dangerouslySetInnerHTML={{__html: data.product.description}}/*I know that this point needs to be checked for safe HTML injection, but since there is no input, this is not necessary.*/
             className="pdp-right-content__footer">
           </div>
         </div>

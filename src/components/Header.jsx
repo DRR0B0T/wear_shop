@@ -6,8 +6,8 @@ import Drawer from './Drawer'
 import {AppContext} from '../App'
 
 const Header = ({data, categoryName, setCategoryName}) => {
-  const {cart, total} = React.useContext(AppContext)
-  const [cartOpened, setCartOpened] = React.useState(false)
+  const {cart, total, cartOpened, setCartOpened} = React.useContext(AppContext)
+
   const {counter} = total
 
   return (

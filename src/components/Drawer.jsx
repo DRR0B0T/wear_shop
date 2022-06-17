@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
-import DrawerItem from './DrawerItem'
-import { AppContext } from '../App'
+import {Link} from 'react-router-dom'
+import {AppContext} from '../App'
+import DrawerItem from "./DrawerItem";
 
 const Drawer = ({ cartOpened, setCartOpened }) => {
   const { visible, cart, objectCurrency, total } = React.useContext(AppContext)
@@ -29,6 +29,7 @@ const Drawer = ({ cartOpened, setCartOpened }) => {
                       key={product.id}
                       {...product}
                       setCartOpened={setCartOpened}
+                      cartOpened={cartOpened}
                     />
                  )
                 }
