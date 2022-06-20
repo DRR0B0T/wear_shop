@@ -1,8 +1,8 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import {Outlet} from 'react-router-dom'
 import Header from './Header'
 
-const Layout = ({ data, categoryName, setCategoryName }) => {
+const Layout = ({data, categoryName, setCategoryName}) => {
   return (
     <>
       <Header
@@ -10,7 +10,7 @@ const Layout = ({ data, categoryName, setCategoryName }) => {
         categoryName={categoryName}
         setCategoryName={setCategoryName}
       />
-      <Outlet />
+      <Outlet/>
     </>
   )
 }

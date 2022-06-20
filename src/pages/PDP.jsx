@@ -17,15 +17,10 @@ const PDP = () => {
     setPrice,
     cart,
     selectedColor,
-    selectedSize,
-    selectedCapacity,
+    selectedSize, setSelectedSize,
+    selectedCapacity, setSelectedCapacity,
     selectedPort,
     selectedTouchId,
-    setSelectedColor,
-    setSelectedSize,
-    setSelectedCapacity,
-    setSelectedPort,
-    setSelectedTouchId
   } = React.useContext(AppContext)
   const [img, setImg] = React.useState('')
 
@@ -67,7 +62,9 @@ const PDP = () => {
     }
     if (productPrice) setPrice(productPrice)
 
-  }, [data, currency, setPrice])
+  }, [data, currency, setPrice, setSelectedCapacity, setSelectedSize])
+
+
   const addProductToCart = () => {
     const htmlId = nextId()
 
@@ -94,11 +91,11 @@ const PDP = () => {
         price
       }
 
-      if (object.selectedPort
-        || object.selectedTouchId
-        || object.selectedColor
-        || object.selectedSize
-        || object.selectedCapacity ) {
+      if (object.ports.length > 0
+        || object.touchId.length > 0
+        || object.colors.length > 0
+        || object.sizes.length > 0
+        || object.capacity.length > 0) {
 
         const objSize = cart.find(product => product.selectedSize === object.selectedSize)
         const objColor = cart.find(product => product.selectedColor === object.selectedColor)
@@ -192,25 +189,21 @@ const PDP = () => {
             <span>{data.product.brand}</span>
           </div>
           <Characteristics
-            setSelectedSize={setSelectedSize}
-            sizes={sizes}
-            setSelectedCapacity={setSelectedCapacity}
-            capacity={capacity}
-            selectedCapacity={selectedCapacity}
             selectedSize={selectedSize}
+            selectedCapacity={selectedCapacity}
             selectedPort={selectedPort}
             selectedTouchId={selectedTouchId}
+            sizes={sizes}
+            capacity={capacity}
             ports={ports}
             touchId={touchId}
-            setSelectedPort={setSelectedPort}
-            setSelectedTouchId={setSelectedTouchId}
             container={'pdp-right-content__sizes'}
             className={'pdp-right-content__sizes-buttons'}
           />
           <Colors
-            setSelectedColor={setSelectedColor}
-            selectedColor={selectedColor}
+
             colors={colors}
+            selectedColor={selectedColor}
             className={'pdp-right-content__colors-btn'}
             container={'pdp-right-content__colors'}
           />

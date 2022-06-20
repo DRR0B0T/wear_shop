@@ -1,28 +1,26 @@
 import React from 'react'
 import Input from './Input'
-import {AppContext} from "../App";
 import Colors from "./Options/Colors";
 import Characteristics from "./Options/Characteristics";
 
-const DrawerItem = ({id,
+const DrawerItem = ({
+                      id,
                       name,
                       image,
-                      colors,
-                      sizes,
                       currency,
                       totalCount,
-                      capacity,
                       counter,
+                      sizes,
+                      capacity,
+                      ports,
+                      touchId,
+                      colors,
                       selectedColor,
                       selectedSize,
                       selectedCapacity,
-                      ports,
-                      touchId,
                       selectedPort,
-                      selectedTouchId
+                      selectedTouchId,
                     }) => {
-  const {setSelectedColor, setSelectedSize, setSelectedCapacity,setSelectedPort,setSelectedTouchId } = React.useContext(AppContext)
-
 
   return (
     <div className="drawer__items__item">
@@ -30,25 +28,20 @@ const DrawerItem = ({id,
         <h3>{name}</h3>
         <span>{currency} {totalCount}</span>
         <Characteristics
-          setSelectedSize={setSelectedSize}
           sizes={sizes}
-          setSelectedCapacity={setSelectedCapacity}
           capacity={capacity}
-          selectedCapacity={selectedCapacity}
-          selectedSize={selectedSize}
-          selectedPort={selectedPort}
-          selectedTouchId={selectedTouchId}
           ports={ports}
           touchId={touchId}
-          setSelectedPort={setSelectedPort}
-          setSelectedTouchId={setSelectedTouchId}
+          selectedSize={selectedSize}
+          selectedCapacity={selectedCapacity}
+          selectedPort={selectedPort}
+          selectedTouchId={selectedTouchId}
           container={'drawer__items__item-size'}
           className={'drawer__items__item-size-buttons'}
         />
         <Colors
-          setSelectedColor={setSelectedColor}
-          selectedColor={selectedColor}
           colors={colors}
+          selectedColor={selectedColor}
           className={'drawer__items__item-color-btn'}
           container={'drawer__items__item-color'}
         />
@@ -62,6 +55,7 @@ const DrawerItem = ({id,
       <div className="drawer__items__item-img">
         <img src={image[0]} alt="product"/>
       </div>
+
     </div>
 
   )

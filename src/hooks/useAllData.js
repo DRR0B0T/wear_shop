@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import {gql} from '@apollo/client'
 
 // noinspection GraphQLUnresolvedReference
 export const GET_ALL_DATA = gql`

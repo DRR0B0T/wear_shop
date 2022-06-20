@@ -1,12 +1,12 @@
 import React from 'react'
-import { useQuery } from '@apollo/client'
+import {useQuery} from '@apollo/client'
 import '../scss/components/_currency-switcher.scss'
-import { AppContext } from '../App'
-import { GET_ALL_CURRENCY } from '../hooks/useAllData'
+import {AppContext} from '../App'
+import {GET_ALL_CURRENCY} from '../hooks/useAllData'
 
 const CurrencySwitcher = () => {
-  const { data, loading, error } = useQuery(GET_ALL_CURRENCY)
-  const { currency, setCurrency, visible, setVisible } = React.useContext(AppContext)
+  const {data, loading, error} = useQuery(GET_ALL_CURRENCY)
+  const {currency, setCurrency, visible, setVisible} = React.useContext(AppContext)
 
   const sortRef = React.useRef()
 
@@ -47,8 +47,8 @@ const CurrencySwitcher = () => {
               onClick={() => setCurrency(currency.symbol)}
               className='currency__switcher_popup-item'
             >
-            {currency.symbol} {currency.label}
-          </li>)
+              {currency.symbol} {currency.label}
+            </li>)
         }
       </ul>
       <svg

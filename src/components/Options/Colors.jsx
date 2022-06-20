@@ -1,14 +1,10 @@
 import React from 'react';
 import Button from "../Button";
+import {AppContext} from "../../App";
 
-const Colors = ({
-                  colors,
-                  setSelectedColor,
-                  selectedColor,
-                  className,
-                  container
-                }) => {
+const Colors = ({className, container, colors, selectedColor}) => {
 
+  const {setSelectedColor} = React.useContext(AppContext)
 
   return (
     <>

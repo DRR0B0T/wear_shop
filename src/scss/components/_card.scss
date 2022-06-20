@@ -10,16 +10,20 @@
   padding: 16px;
   cursor: pointer;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
   &:hover {
     box-shadow: 0 4px 35px rgba(168, 172, 176, 0.19);
     transform: translateY(-5px);
   }
+
   &.active {
     box-shadow: 0 4px 35px rgba(168, 172, 176, 0.29);
   }
+
   &.disabled {
     opacity: 0.4;
   }
+
   &__out {
     position: absolute;
     left: 106px;
@@ -28,9 +32,11 @@
     font-weight: 400;
     font-size: 24px;
   }
-  &__img__wrapper{
+
+  &__img__wrapper {
     width: 354px;
     height: 330px;
+
     .card-img {
       width: 100%;
       height: 100%;
@@ -45,10 +51,12 @@
     font-weight: 300;
     font-size: 18px;
   }
+
   &__price {
     font-weight: 500;
     line-height: 25px;
   }
+
   .shopping {
     position: relative;
     width: 100%;

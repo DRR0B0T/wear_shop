@@ -2,11 +2,12 @@
 
 .error {
   position: relative;
-  top:150px;
+  top: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   &__title {
     text-transform: uppercase;
     color: #c71b1b;

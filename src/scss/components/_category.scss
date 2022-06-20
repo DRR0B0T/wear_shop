@@ -6,12 +6,14 @@
   .container {
     width: 100%;
     margin: 0 auto;
+
     select:hover {
-      background-color: rgba(0,0,0,0.05);
+      background-color: rgba(0, 0, 0, 0.05);
       border-radius: 5px;
     }
+
     .name {
-      position:relative;
+      position: relative;
       left: 100px;
       top: 80px;
       font-weight: 400;
@@ -20,6 +22,7 @@
       height: 68px;
       padding: 0 0 0 5px;
     }
+
     .cards-block {
       position: relative;
       width: 90vw;

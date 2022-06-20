@@ -1,11 +1,11 @@
 import React from 'react'
 import ShoppingIcon from './ShoppingIcon'
-import { Link } from 'react-router-dom'
-import { AppContext } from '../App'
+import {Link} from 'react-router-dom'
+import {AppContext} from '../App'
 
 
-const Card = ({ id, inStock, name, gallery, prices, brand }) => {
-  const { currency, cart } = React.useContext(AppContext)
+const Card = ({id, inStock, name, gallery, prices, brand}) => {
+  const {currency, cart} = React.useContext(AppContext)
   const newPrice = prices.find(price => price.currency.symbol === currency).amount
 
   return (

@@ -1,24 +1,21 @@
 import React from 'react';
 import Button from "../Button";
+import {AppContext} from "../../App";
 
 const Characteristics = ({
-                           setSelectedSize,
-                           setSelectedCapacity,
+                           container,
+                           className,
                            sizes,
                            capacity,
+                           ports,
+                           touchId,
                            selectedSize,
                            selectedCapacity,
                            selectedPort,
-                           selectedTouchId,
-                           ports,
-                           touchId,
-                           setSelectedPort,
-                           setSelectedTouchId,
-  container,
-                           className,
+                           selectedTouchId
                          }) => {
 
-
+  const {setSelectedSize, setSelectedCapacity, setSelectedPort, setSelectedTouchId} = React.useContext(AppContext)
 
   return (
     <>

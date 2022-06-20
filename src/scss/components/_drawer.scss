@@ -43,32 +43,40 @@
     pointer-events: none;
 
   }
- &-container {
-   width: 100%;
- }
-  &__title b{
+
+  &-container {
+    width: 100%;
+  }
+
+  &__title b {
     font-weight: 700;
   }
-  &__title span{
+
+  &__title span {
     font-weight: 400;
   }
+
   &__items {
     width: 100%;
     overflow: auto;
     height: 360px;
+
     &__item {
       display: flex;
       justify-content: space-between;
       height: 190px;
       padding: 0;
       margin-top: 41px;
+
       &-price {
         width: 136px;
-        h3{
+
+        h3 {
           font-weight: 300;
           width: inherit;
           word-wrap: break-word;
         }
+
         span {
           display: block;
           margin-top: 5px;
@@ -76,35 +84,45 @@
         }
 
       }
+
       &-size {
         display: flex;
         flex-direction: column;
+
         &-buttons {
           margin: 5px 0;
-          h3{
+
+          h3 {
             font-weight: 400;
             font-size: 14px;
             line-height: 16px;
             margin: 3px 0;
           }
+
           &.capacity {
             button {
               width: 35px;
             }
+
             margin: 0;
           }
+
           &.ports {
             margin: 0;
+
             h3 {
               font-size: 13px;
             }
           }
+
           &.touch {
             h3 {
               font-size: 13px;
             }
+
             margin: 0;
           }
+
           button {
             width: 27px;
             height: 24px;
@@ -114,7 +132,6 @@
             line-height: 16px;
             background: $background;
             margin-right: 5px;
-            cursor: pointer;
             transition: all 0.2s ease-in-out;
             font-family: 'Source Sans Pro', sans-serif;
 
@@ -122,23 +139,24 @@
               background: $text;
               color: $background;
             }
-            &:hover {
-              background: $text;
-              color: $background;
-            }
+
+
           }
         }
       }
+
       &-color {
         width: 100%;
         height: 20px;
+
         &-btn {
           width: 20px;
           height: 20px;
-          border: 2px solid rgba(0,0,0,.4);
+          border: 2px solid rgba(0, 0, 0, .4);
           margin-right: 4px;
           box-sizing: border-box;
           cursor: pointer;
+
           &.active {
             border: 2px solid #5ECE7B;
             width: 20px;
@@ -146,6 +164,7 @@
           }
         }
       }
+
       &-counter {
         display: flex;
         flex-direction: column;
@@ -153,7 +172,8 @@
         align-items: center;
         width: 24px;
         margin-right: 8px;
-        button{
+
+        button {
           width: 24px;
           height: 24px;
           border-radius: 0;
@@ -161,18 +181,21 @@
           cursor: pointer;
           background: $background;
           transition: all 0.3s ease-in-out;
+
           &:hover {
             background: $text;
             color: $background;
           }
+
           svg {
-            position:relative;
+            position: relative;
             top: 2px;
             width: 15px;
             height: 15px;
           }
         }
-        input{
+
+        input {
           width: 30px;
           height: 26px;
           border: none;
@@ -180,6 +203,7 @@
           font-size: 16px;
         }
       }
+
       &-img {
         img {
           width: 100%;
@@ -189,12 +213,14 @@
       }
     }
   }
+
   &__total {
     font-weight: 700;
     width: inherit;
     margin-top: 21px;
     display: flex;
     justify-content: space-between;
+
     span {
       font-family: 'Roboto', sans-serif;
       font-weight: 500;
@@ -202,7 +228,8 @@
       line-height: 18px;
     }
   }
-  &__footer{
+
+  &__footer {
     display: flex;
     justify-content: space-between;
     margin-top: 21px;
@@ -215,11 +242,13 @@
       border: 1px solid $text;
       cursor: pointer;
       transition: background-color .3s ease-in-out;
+
       &:hover {
         background-color: $primary;
         color: #fff;
         border: none;
       }
+
       &.active {
         background-color: $primary;
         color: #fff;

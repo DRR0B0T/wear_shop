@@ -32,6 +32,8 @@ function App () {
   const [selectedTouchId, setSelectedTouchId] = React.useState('No')
 
 
+
+
   const [total, setTotal] = React.useState({
     tax: 0,
     counter: 0,
@@ -45,6 +47,7 @@ function App () {
         .flat()
         .filter(item => item.currency.symbol === currency))
     }
+
     setTotal({
       tax: cart.reduce((prev, current) => {
         return prev + parseFloat(current.totalCount) / 100 * 21
@@ -78,12 +81,9 @@ function App () {
       setTotal,
       cartOpened,
       setCartOpened,
-      selectedColor,
-      setSelectedColor,
-      selectedSize,
-      setSelectedSize,
-      selectedCapacity,
-      setSelectedCapacity,
+      selectedColor, setSelectedColor,
+      selectedSize, setSelectedSize,
+      selectedCapacity, setSelectedCapacity,
       selectedPort, setSelectedPort,
       selectedTouchId, setSelectedTouchId
     }}>

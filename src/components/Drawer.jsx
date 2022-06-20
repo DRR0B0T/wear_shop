@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom'
 import {AppContext} from '../App'
 import DrawerItem from "./DrawerItem";
 
-const Drawer = ({ cartOpened, setCartOpened }) => {
-  const { visible, cart, objectCurrency, total } = React.useContext(AppContext)
-  const { counter, price } = total
+const Drawer = ({cartOpened, setCartOpened}) => {
+  const {visible, cart, objectCurrency, total} = React.useContext(AppContext)
+  const {counter, price} = total
 
   return (
     <>
@@ -18,24 +18,22 @@ const Drawer = ({ cartOpened, setCartOpened }) => {
                className="drawer">
             <div className="drawer-container">
               <div className="drawer__title">
-                <h3 >
+                <h3>
                   <b>My bag,</b> <span>{counter} items</span>
                 </h3>
               </div>
               <div className="drawer__items">
                 {
-                 cart.length > 0 && cart.map((product) =>
+                  cart.length > 0 && cart.map((product) =>
                     <DrawerItem
                       key={product.id}
                       {...product}
-                      setCartOpened={setCartOpened}
-                      cartOpened={cartOpened}
                     />
-                 )
+                  )
                 }
               </div>
               <div className="drawer__total">
-                <span>Total:</span> <span>{objectCurrency}{Math.trunc(price * 100) /100}</span>
+                <span>Total:</span> <span>{objectCurrency}{Math.trunc(price * 100) / 100}</span>
               </div>
               <div className="drawer__footer">
                 <Link

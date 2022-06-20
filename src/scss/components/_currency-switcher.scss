@@ -1,6 +1,6 @@
 @import '../variables';
 
-.currency__switcher{
+.currency__switcher {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -9,7 +9,9 @@
   font-weight: 500;
   font-size: 18px;
 
-  &_name{}
+  &_name {
+  }
+
   &_popup {
     position: absolute;
     display: flex;
@@ -24,20 +26,25 @@
     right: 78px;
     z-index: 1000 !important;
 
-    &-item{
+    &-item {
       text-align: center;
       width: 100%;
+
       &:hover {
         width: 100%;
         background: $light-gray;
       }
     }
   }
-  svg {}
+
+  svg {
+  }
 }
+
 .rotate {
   transform: rotate(180deg);
 }
+
 .hidden {
   display: none;
 }

@@ -9,28 +9,22 @@ const CartItem = ({
                     name,
                     brand,
                     image,
-                    colors,
-                    sizes,
-                    capacity,
                     currency,
                     totalCount,
                     counter,
+                    sizes,
+                    capacity,
+                    ports,
+                    touchId,
+                    colors,
                     selectedColor,
                     selectedSize,
                     selectedCapacity,
                     selectedPort,
                     selectedTouchId,
-                    ports,
-                    touchId,
                   }) => {
-  const {
-    setObjectCurrency,
-    setSelectedColor,
-    setSelectedSize,
-    setSelectedCapacity,
-    setSelectedPort,
-    setSelectedTouchId
-  } = React.useContext(AppContext)
+  const {setObjectCurrency} = React.useContext(AppContext)
+
   let [cartImage, setCartImage] = React.useState(0)
 
 
@@ -66,25 +60,20 @@ const CartItem = ({
           </h3>
           <span className="cart-items__item-price-price">{currency}{totalCount}</span>
           <Characteristics
-            setSelectedSize={setSelectedSize}
             sizes={sizes}
-            setSelectedCapacity={setSelectedCapacity}
             capacity={capacity}
-            selectedCapacity={selectedCapacity}
-            selectedSize={selectedSize}
-            selectedPort={selectedPort}
-            selectedTouchId={selectedTouchId}
             ports={ports}
             touchId={touchId}
-            setSelectedPort={setSelectedPort}
-            setSelectedTouchId={setSelectedTouchId}
+            selectedSize={selectedSize}
+            selectedCapacity={selectedCapacity}
+            selectedPort={selectedPort}
+            selectedTouchId={selectedTouchId}
             container={'cart-items__item-sizes'}
             className={'cart-items__item-sizes-btn'}
           />
           <Colors
-            setSelectedColor={setSelectedColor}
-            selectedColor={selectedColor}
             colors={colors}
+            selectedColor={selectedColor}
             className={'cart-items__item-colors-btn'}
             container={'cart-items__item-colors'}
           />
