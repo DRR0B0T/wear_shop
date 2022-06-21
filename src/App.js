@@ -20,7 +20,6 @@ function App () {
   const [amount, setAmount] = React.useState([])
   const [cart, setCart] = React.useState([])
   const [currency, setCurrency] = React.useState('$')
-  const [objectCurrency, setObjectCurrency] = React.useState('')
   const [visible, setVisible] = React.useState(false)
   const [cartOpened, setCartOpened] = React.useState(false)
   const [price, setPrice] = React.useState(0)
@@ -30,7 +29,6 @@ function App () {
   const [selectedCapacity, setSelectedCapacity] = React.useState('512G')
   const [selectedPort, setSelectedPort] = React.useState('No')
   const [selectedTouchId, setSelectedTouchId] = React.useState('No')
-
 
 
 
@@ -75,8 +73,6 @@ function App () {
       setCart,
       price,
       setPrice,
-      setObjectCurrency,
-      objectCurrency,
       total,
       setTotal,
       cartOpened,
@@ -85,7 +81,7 @@ function App () {
       selectedSize, setSelectedSize,
       selectedCapacity, setSelectedCapacity,
       selectedPort, setSelectedPort,
-      selectedTouchId, setSelectedTouchId
+      selectedTouchId, setSelectedTouchId,
     }}>
       <div className="App">
         <Routes>

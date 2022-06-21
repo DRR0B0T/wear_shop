@@ -2,13 +2,14 @@ import React from 'react'
 import Input from './Input'
 import Colors from "./Options/Colors";
 import Characteristics from "./Options/Characteristics";
+import {AppContext} from "../App";
 
 const DrawerItem = ({
                       id,
                       name,
                       image,
-                      currency,
-                      totalCount,
+                      prices,
+                      price,
                       counter,
                       sizes,
                       capacity,
@@ -22,11 +23,32 @@ const DrawerItem = ({
                       selectedTouchId,
                     }) => {
 
+
+  const {currency, setCart} = React.useContext(AppContext)
+
+  React.useEffect(() => {
+    const newPrice = prices.find(price => price.currency.symbol === currency).amount
+
+    setCart(cart => {
+      return cart.map(item => {
+        if (item.id === id) {
+          return {
+            ...item,
+            price: newPrice,
+            totalCount: Math.trunc(((item.counter) * newPrice) * 100) / 100
+          }
+        }
+        return item
+      })
+    })
+  }, [currency, setCart, prices, id])
+
+
   return (
     <div className="drawer__items__item">
       <div className="drawer__items__item-price">
         <h3>{name}</h3>
-        <span>{currency} {totalCount}</span>
+        <span>{currency} {price}</span>
         <Characteristics
           sizes={sizes}
           capacity={capacity}

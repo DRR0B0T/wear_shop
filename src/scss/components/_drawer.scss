@@ -257,3 +257,13 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .drawer {
+
+    height: 80vh;
+    &__items {
+      height: 280px;
+    }
+  }
+}

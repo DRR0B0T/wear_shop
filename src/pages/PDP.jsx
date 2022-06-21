@@ -55,12 +55,12 @@ const PDP = () => {
     if (touchId !== undefined) setTouchId(touchId.items)
 
     const productPrice = data?.product?.prices.find(item => item.currency.symbol === currency).amount
+    if (productPrice) setPrice(productPrice)
     if (data) {
       setImg(data?.product?.gallery[0])
       setSelectedCapacity(capacityItem?.items[0].id)
       setSelectedSize(sizeItem?.items[0].id)
     }
-    if (productPrice) setPrice(productPrice)
 
   }, [data, currency, setPrice, setSelectedCapacity, setSelectedSize])
 
@@ -75,6 +75,7 @@ const PDP = () => {
         image: data?.product.gallery,
         brand: data?.product.brand,
         inStock: data?.product.inStock,
+        prices: data?.product.prices,
         counter: 1,
         totalCount: price,
         colors,
@@ -88,7 +89,7 @@ const PDP = () => {
         selectedPort,
         selectedTouchId,
         currency,
-        price
+        price,
       }
 
       if (object.ports.length > 0

@@ -37,3 +37,23 @@
   }
 
 }
+
+@media (max-width: 768px) {
+  .main {
+    .container {
+      width: 100%;
+      .name {
+        left: 25px;
+      }
+      .cards-block {
+        position: relative;
+        left:10px;
+        top: 103px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+    }
+  }
+}

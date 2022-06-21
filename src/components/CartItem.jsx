@@ -9,8 +9,7 @@ const CartItem = ({
                     name,
                     brand,
                     image,
-                    currency,
-                    totalCount,
+                    price,
                     counter,
                     sizes,
                     capacity,
@@ -22,15 +21,12 @@ const CartItem = ({
                     selectedCapacity,
                     selectedPort,
                     selectedTouchId,
+
                   }) => {
-  const {setObjectCurrency} = React.useContext(AppContext)
+  const {currency} = React.useContext(AppContext)
 
   let [cartImage, setCartImage] = React.useState(0)
 
-
-  React.useEffect(() => {
-    setObjectCurrency(currency)
-  }, [currency, setObjectCurrency, counter])
 
   const handleChangeImageBack = () => {
     if (cartImage === 0) {
@@ -58,7 +54,7 @@ const CartItem = ({
           <h3 className="cart-items__item-price-name">
             {name} <span>{brand}</span>
           </h3>
-          <span className="cart-items__item-price-price">{currency}{totalCount}</span>
+          <span className="cart-items__item-price-price">{currency}{price}</span>
           <Characteristics
             sizes={sizes}
             capacity={capacity}

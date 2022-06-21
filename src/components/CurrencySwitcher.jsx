@@ -9,19 +9,19 @@ const CurrencySwitcher = () => {
   const {currency, setCurrency, visible, setVisible} = React.useContext(AppContext)
 
   const sortRef = React.useRef()
-
   React.useEffect(() => {
     const handleOutsideClick = (event) => {
       if (!event.path.includes(sortRef.current)) {
         setVisible(false)
       }
     }
-    document.body.addEventListener('click', handleOutsideClick)
+      document.body.addEventListener('click', handleOutsideClick)
 
     return () => {
       document.body.removeEventListener('click', handleOutsideClick)
     }
   }, [setVisible])
+
 
   if (loading) return null
 

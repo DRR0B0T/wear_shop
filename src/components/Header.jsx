@@ -10,6 +10,11 @@ const Header = ({data, categoryName, setCategoryName}) => {
 
   const {counter} = total
 
+  const handleClick = (name) => {
+    setCategoryName(name)
+    setCartOpened(false)
+  }
+
   return (
     <>
       <header className='header'>
@@ -23,7 +28,7 @@ const Header = ({data, categoryName, setCategoryName}) => {
                   to='/'>
                   <h3
                     className={categoryName === category.name ? 'categories__name active' : 'categories__name'}
-                    onClick={() => setCategoryName(category.name)}
+                    onClick={()=>handleClick(category.name)}
                   >
                     {category.name}
                   </h3>
@@ -31,11 +36,9 @@ const Header = ({data, categoryName, setCategoryName}) => {
               )
             }
           </div>
-          <Link to='/'>
             <div className="logo">
               <img width="41" src={logo} alt="Logo"/>
             </div>
-          </Link>
           <div className="sort__popup">
             <CurrencySwitcher/>
             <div
