@@ -34,7 +34,7 @@ const Drawer = ({cartOpened, setCartOpened}) => {
                 }
               </div>
               <div className="drawer__total">
-                <span>Total:</span> <span>{currency} {Math.trunc(price * 100) / 100}</span>
+                <span>Total:</span> <span>{currency} {price.toFixed(2)}</span>
               </div>
               <div className="drawer__footer">
                 <Link

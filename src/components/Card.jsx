@@ -5,11 +5,17 @@ import {AppContext} from '../App'
 
 
 const Card = ({id, inStock, name, gallery, prices, brand}) => {
-  const {currency, cart} = React.useContext(AppContext)
+  const [onHover, setOnHover] = React.useState(false)
+
+  const {currency} = React.useContext(AppContext)
   const newPrice = prices.find(price => price.currency.symbol === currency).amount
 
+
+
   return (
-    <div key={id}
+    <div
+         onMouseEnter={() => setOnHover(!onHover)}
+         onMouseLeave={() => setOnHover(false)}
          className={!inStock ? 'card disabled' : 'card'}>
       <Link to={`pdp/${id}/${name}`}>
         <div className='card__img__wrapper'>
@@ -18,7 +24,8 @@ const Card = ({id, inStock, name, gallery, prices, brand}) => {
             !inStock && <h3 className='card__out'>OUT OF STOCK</h3>
           }
         </div>
-        {cart.some(item => item.id === id) && <ShoppingIcon/>}
+      </Link>
+        {inStock && onHover ? <ShoppingIcon id={id}/> : ''}
         <h3 className="card__name">
           {name}<br/>
           {brand}
@@ -26,7 +33,7 @@ const Card = ({id, inStock, name, gallery, prices, brand}) => {
         <span className="card__price">
               <div>{currency} {newPrice}</div>
         </span>
-      </Link>
+
     </div>
   )
 }

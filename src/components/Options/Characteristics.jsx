@@ -17,6 +17,7 @@ const Characteristics = ({
 
   const {setSelectedSize, setSelectedCapacity, setSelectedPort, setSelectedTouchId} = React.useContext(AppContext)
 
+
   return (
     <>
       {

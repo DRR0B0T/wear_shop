@@ -32,11 +32,13 @@ function App () {
 
 
 
+
   const [total, setTotal] = React.useState({
     tax: 0,
     counter: 0,
     price: 0
   })
+
 
   React.useEffect(() => {
     if (!loading) {

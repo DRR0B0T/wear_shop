@@ -11,7 +11,7 @@ const Input = ({id, counter}) => {
           return {
             ...product,
             counter: product.counter + 1,
-            totalCount: Math.trunc(((product.counter + 1) * product.price) * 100) / 100
+            totalCount: (product.counter + 1) * parseFloat(product.price)
           }
         }
         return product
@@ -27,7 +27,7 @@ const Input = ({id, counter}) => {
           return {
             ...product,
             counter: product.counter - 1 > 1 ? product.counter - 1 : 1,
-            totalCount: Math.trunc(((product.counter - 1 > 1 ? product.counter - 1 : 1) * product.price) * 100) / 100
+            totalCount: (product.counter - 1 > 1 ? product.counter - 1 : 1) * parseFloat(product.price)
           }
         }
         return product
@@ -42,7 +42,7 @@ const Input = ({id, counter}) => {
           return {
             ...product,
             counter: value,
-            totalCount: Math.trunc((value * product.price) * 100) / 100
+            totalCount: value * parseFloat(product.price)
           }
         }
         return product

@@ -35,7 +35,7 @@ const DrawerItem = ({
           return {
             ...item,
             price: newPrice,
-            totalCount: Math.trunc(((item.counter) * newPrice) * 100) / 100
+            totalCount: item.counter * parseFloat(newPrice)
           }
         }
         return item

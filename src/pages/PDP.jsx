@@ -40,16 +40,17 @@ const PDP = () => {
       id
     }
   })
-  console.log(data)
+
+
   React.useEffect(() => {
     const colorItem = data?.product?.attributes.find(item => item.id === 'Color')
-    const sizeItem = data?.product?.attributes.find(item => item.id === 'Size')
     const capacityItem = data?.product?.attributes.find(item => item.id === 'Capacity')
     const ports = data?.product?.attributes.find(item => item.id === 'With USB 3 ports')
     const touchId = data?.product?.attributes.find(item => item.id === 'Touch ID in keyboard')
+    const sizeItem = data?.product?.attributes.find(item => item.id === 'Size')
 
-    if (colorItem !== undefined) setColors(colorItem.items)
     if (sizeItem !== undefined) setSizes(sizeItem.items)
+    if (colorItem !== undefined) setColors(colorItem.items)
     if (capacityItem !== undefined) setCapacity(capacityItem.items)
     if (ports !== undefined) setPorts(ports.items)
     if (touchId !== undefined) setTouchId(touchId.items)
@@ -67,7 +68,6 @@ const PDP = () => {
 
   const addProductToCart = () => {
     const htmlId = nextId()
-
     if (data?.product.inStock) {
       const object = {
         id: htmlId,
@@ -156,9 +156,7 @@ const PDP = () => {
           return true
         }
       }
-
     }
-
   }
 
   if (loading) return <Spinner/>
