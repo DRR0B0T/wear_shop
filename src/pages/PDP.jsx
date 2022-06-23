@@ -179,11 +179,7 @@ const PDP = () => {
         }
       </div>
       <div className="pdp-right">
-        <div>
-          <img
-            className="pdp-right-main-img"
-            src={img} alt="Product"/>
-        </div>
+          <img src={img} alt="Product"/>
         <div className='pdp-right-content'>
           <div className="pdp-right-content__header">
             <h2>{data.product.name}</h2>
@@ -202,7 +198,6 @@ const PDP = () => {
             className={'pdp-right-content__sizes-buttons'}
           />
           <Colors
-
             colors={colors}
             selectedColor={selectedColor}
             className={'pdp-right-content__colors-btn'}

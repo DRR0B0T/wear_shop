@@ -11,8 +11,11 @@ const Colors = ({className, container, colors, selectedColor}) => {
       {
         colors.length
           ? (
-            <div className={container}>
+            <div >
               <h3 style={{marginTop: 10, marginBottom: 10}}>Color:</h3>
+              <div className={container}>
+
+
               {
                 colors.map(color =>
                   <Button
@@ -26,6 +29,7 @@ const Colors = ({className, container, colors, selectedColor}) => {
                   />
                 )
               }
+              </div>
             </div>)
           : null
       }
