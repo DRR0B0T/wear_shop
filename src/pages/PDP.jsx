@@ -40,7 +40,7 @@ const PDP = () => {
       id
     }
   })
-
+  console.log(data)
   React.useEffect(() => {
     const colorItem = data?.product?.attributes.find(item => item.id === 'Color')
     const sizeItem = data?.product?.attributes.find(item => item.id === 'Size')
@@ -179,7 +179,12 @@ const PDP = () => {
         }
       </div>
       <div className="pdp-right">
-          <img src={img} alt="Product"/>
+         <div className={!data.product.inStock ? "pdp-right__img-container out" : "pdp-right__img-container"}>
+           <img src={img} alt="Product"/>
+         {
+           !data.product.inStock && <h3 className='pdp-right__out'>OUT OF STOCK</h3>
+         }
+         </div>
         <div className='pdp-right-content'>
           <div className="pdp-right-content__header">
             <h2>{data.product.name}</h2>
