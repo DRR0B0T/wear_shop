@@ -2,7 +2,7 @@ import React from 'react'
 import {useQuery} from '@apollo/client'
 import '../scss/components/_currency-switcher.scss'
 import {AppContext} from '../App'
-import {GET_ALL_CURRENCY} from '../hooks/useAllData'
+import {GET_ALL_CURRENCY} from '../hooks/query'
 
 const CurrencySwitcher = () => {
   const {data, loading, error} = useQuery(GET_ALL_CURRENCY)
@@ -15,7 +15,7 @@ const CurrencySwitcher = () => {
         setVisible(false)
       }
     }
-      document.body.addEventListener('click', handleOutsideClick)
+    document.body.addEventListener('click', handleOutsideClick)
 
     return () => {
       document.body.removeEventListener('click', handleOutsideClick)

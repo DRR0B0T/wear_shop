@@ -7,16 +7,31 @@ import {AppContext} from '../App'
 const Card = ({id, inStock, name, gallery, prices, brand}) => {
   const [onHover, setOnHover] = React.useState(false)
 
-  const {currency} = React.useContext(AppContext)
+  const {
+    currency, setSizes,
+    setColors,
+    setCapacity,
+    setPorts,
+    setTouchId,
+  } = React.useContext(AppContext)
   const newPrice = prices.find(price => price.currency.symbol === currency).amount
 
+
+  const onChangeData = () => {
+    setOnHover(true)
+    setSizes([])
+    setColors([])
+    setCapacity([])
+    setPorts([])
+    setTouchId([])
+  }
 
 
   return (
     <div
-         onMouseEnter={() => setOnHover(!onHover)}
-         onMouseLeave={() => setOnHover(false)}
-         className={!inStock ? 'card disabled' : 'card'}>
+      onMouseEnter={onChangeData}
+      onMouseLeave={() => setOnHover(false)}
+      className={!inStock ? 'card disabled' : 'card'}>
       <Link to={`pdp/${id}/${name}`}>
         <div className='card__img__wrapper'>
           <img className='card-img' src={gallery[0]} alt={'productImage'}/>
@@ -25,12 +40,12 @@ const Card = ({id, inStock, name, gallery, prices, brand}) => {
           }
         </div>
       </Link>
-        {inStock && onHover ? <ShoppingIcon id={id}/> : ''}
-        <h3 className="card__name">
-          {name}<br/>
-          {brand}
-        </h3>
-        <span className="card__price">
+      {inStock && onHover ? <ShoppingIcon id={id}/> : ''}
+      <h3 className="card__name">
+        {name}<br/>
+        {brand}
+      </h3>
+      <span className="card__price">
               <div>{currency} {newPrice}</div>
         </span>
 

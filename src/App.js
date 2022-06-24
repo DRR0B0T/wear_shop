@@ -8,7 +8,7 @@ import Error from './pages/Error'
 import PDP from './pages/PDP'
 import Category from './pages/Category'
 import Cart from './pages/Cart'
-import { GET_ALL_DATA } from './hooks/useAllData'
+import { GET_ALL_DATA } from './hooks/query'
 import Spinner from './components/Spinner'
 
 export const AppContext = React.createContext({})
@@ -30,8 +30,13 @@ function App () {
   const [selectedPort, setSelectedPort] = React.useState('No')
   const [selectedTouchId, setSelectedTouchId] = React.useState('No')
 
+  const [colors, setColors] = React.useState([])
+  const [sizes, setSizes] = React.useState([])
+  const [capacity, setCapacity] = React.useState([])
+  const [ports, setPorts] = React.useState([])
+  const [touchId, setTouchId] = React.useState([])
 
-
+  const [img, setImg] = React.useState('')
 
   const [total, setTotal] = React.useState({
     tax: 0,
@@ -59,7 +64,10 @@ function App () {
         return prev + parseFloat(current.totalCount)
       }, 0)
     })
-  }, [categoryName, data, loading, currency, cart])
+
+
+
+  }, [categoryName, data, loading, currency, cart, setPrice, setSelectedCapacity, setSelectedSize])
 
   if (loading) return <Spinner/>
   if (error) return `Error ${error.message}`
@@ -84,6 +92,12 @@ function App () {
       selectedCapacity, setSelectedCapacity,
       selectedPort, setSelectedPort,
       selectedTouchId, setSelectedTouchId,
+      colors, setColors,
+      sizes, setSizes,
+      capacity, setCapacity,
+      ports, setPorts,
+      touchId, setTouchId,
+      img, setImg
     }}>
       <div className="App">
         <Routes>

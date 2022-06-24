@@ -2,7 +2,7 @@ import React from 'react'
 import Card from '../components/Card'
 import Loader from '../components/ContentLoader'
 import {useQuery} from '@apollo/client'
-import {GET_CATEGORY} from '../hooks/useAllData'
+import {GET_CATEGORY} from '../hooks/query'
 
 const Category = ({categoryName}) => {
   const [name, setName] = React.useState('All')
