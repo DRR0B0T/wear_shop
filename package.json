@@ -24,7 +24,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "cd endpoint && npm run start",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn start\""
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start\""
   },
   "eslintConfig": {
     "extends": [

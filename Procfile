@@ -1,1 +1,1 @@
-web: yarn start && cd endpoint/dist/main.js node dist/main.js
+web: node endpoint/dist/main.js
