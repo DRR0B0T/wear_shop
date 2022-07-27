@@ -1,2 +1,1 @@
-server: node endpoint/dist/main.js
-web: yarn start
+web: yarn dev
