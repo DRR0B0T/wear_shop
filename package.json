@@ -23,8 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "npm run start --prefix endpoint",
-    "dev": "concurrently \"yarn start server\" \"yarn start\""
+    "server": "cd endpoint && npm run start",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn start\"",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "eslintConfig": {
     "extends": [
