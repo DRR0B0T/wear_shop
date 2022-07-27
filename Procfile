@@ -1,1 +1,2 @@
-web: node endpoint/dist/main.js
+web: yarn start
+server: cd endpoint && yarn install && yarn start
