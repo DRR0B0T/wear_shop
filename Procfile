@@ -1,2 +1,2 @@
-web: node endpoint/dist/main.js
+web: cd endpoint/dist && node main.js
 worker: yarn start
