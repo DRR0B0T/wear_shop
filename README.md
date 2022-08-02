@@ -1,5 +1,10 @@
 # Getting Started with Create React App
 
+## For start this project you need pull them from GitHub:
+# 1. Enter to endpint and do all that writing in the Readme
+# 2. In the main folder start yarn install and yarn start
+# 3. For the starting the project you need run yarn dev in the main folder
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
